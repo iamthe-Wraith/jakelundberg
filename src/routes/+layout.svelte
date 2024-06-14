@@ -128,7 +128,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        gap: 1rem;
+        gap: 2rem;
         padding: 1.5rem 1.5rem 1rem;
         background: var(--neutral-100);
     }
@@ -228,6 +228,7 @@
             margin-bottom: 0;
             line-height: 2rem;
             transition: all 0.25s ease-in-out;
+            text-align: left;
         }
 
         & .nav-item-subtext {
@@ -254,4 +255,6 @@
             font-size: 2.25rem;
         }
     }
+
+
 </style>

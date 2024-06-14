@@ -154,13 +154,18 @@ body * {
 	padding: 0;
 	box-sizing: border-box;
 	font-family: var(--body-font);
-	font-size: 1.1rem;
+	font-size: 0.9rem;
 	letter-spacing: 0.05rem;
-	line-height: 1.9rem;
+	line-height: 1.7rem;
 	transition: color 0.15s ease-in-out,
 				background-color 0.15s ease-in-out,
 				border-color 0.15s ease-in-out,
 				opacity 0.15s ease-in-out;
+
+	@media (min-width: 768px) {
+		font-size: 1.1rem;
+		line-height: 1.9rem;
+	}
 }
 
 a,
@@ -221,6 +226,7 @@ h6 *,
 	font-family: var(--header-font);
 	color: var(--primary-500);
 	letter-spacing: 0.05rem;
+	text-align: center;
 }
 
 .primary-font,
@@ -232,49 +238,85 @@ h6 *,
 h1,
 h1 *,
 .h1 {
-	margin-bottom: 1.9rem;
-	font-size: 3rem;
-	line-height: 4.2rem;
+	margin-bottom: 1.6rem;
+	font-size: 2.2rem;
+	line-height: 2.5rem;
+
+	@media (min-width: 768px) {
+		margin-bottom: 1.9rem;
+		font-size: 3rem;
+		line-height: 4.2rem;
+	}
 }
 
 h2,
 h2 *,
 .h2 {
-	margin-bottom: 1.9rem;
-	font-size: 2.7rem;
-	line-height: 3.7rem;
+	margin-bottom: 1.6rem;
+	font-size: 2rem;
+	line-height: 2.4rem;
+	
+	@media (min-width: 768px) {
+		margin-bottom: 1.9rem;
+		font-size: 2.7rem;
+		line-height: 3.7rem;
+	}
 }
 
 h3,
 h3 *,
 .h3 {
-	margin-bottom: 1.7rem;
-	font-size: 2.5rem;
-	line-height: 3.5rem;
+	margin-bottom: 1.25rem;
+	font-size: 1.8rem;
+	line-height: 2rem;
+
+	@media (min-width: 768px) {
+		margin-bottom: 1.7rem;
+		font-size: 2.5rem;
+		line-height: 3.5rem;
+	}
 }
 
 h4,
 h4 *,
 .h4 {
 	margin-bottom: 1rem;
-	font-size: 2.2rem;
-	line-height: 3.2rem;
+	font-size: 1.6rem;
+	line-height: 2rem;
+
+	@media (min-width: 768px) {
+		margin-bottom: 1rem;
+		font-size: 2.2rem;
+		line-height: 3.2rem;
+	}
 }
 
 h5,
 h5 *,
 .h5 {
 	margin-bottom: 1rem;
-	font-size: 2rem;
-	line-height: 3rem;
+	font-size: 1.3rem;
+	line-height: 1.75rem;
+
+	@media (min-width: 768px) {
+		margin-bottom: 1rem;
+		font-size: 2rem;
+		line-height: 3rem;
+	}
 }
 
 h6,
 h6 *,
 .h6 {
-	margin-bottom: 1.1rem;
-	font-size: 1.8rem;
-	line-height: 2.8rem;
+	margin-bottom: 1rem;
+	font-size: 1.1rem;
+	line-height: 1.5rem;
+
+	@media (min-width: 768px) {
+		margin-bottom: 1.1rem;
+		font-size: 1.8rem;
+		line-height: 2.8rem;
+	}
 }
 
 p {
@@ -290,4 +332,17 @@ p {
 
 .hidden {
 	display: none !important;
+}
+
+/* ANIMATIONS */
+@keyframes float {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+	100% {
+		transform: translateY(0);
+	}
 }
