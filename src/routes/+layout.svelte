@@ -1,6 +1,7 @@
 <script lang="ts">
     import './global.css';
     import { page } from '$app/stores';  
+	import { onMount } from 'svelte';
 
     const socialItems = [
         {
@@ -64,6 +65,57 @@
             iconStyles: 'transform: rotate(5deg);'
         }
     ];
+
+    let navRef: HTMLElement;
+    let bottomRowNavRef: HTMLElement;
+
+    onMount(() => {
+        setTimeout(resizeNav, 10);
+
+        window.addEventListener('resize', resizeNav);
+
+        return () => {
+            window.removeEventListener('resize', resizeNav);
+        }
+    })
+
+    const resizeNav = () => {
+        const navItems = navRef.querySelectorAll('.nav-item');
+        const navWidth = navRef.getBoundingClientRect().width;
+
+        if (navWidth <= 590) {
+            for(let i = 0; i < navItems.length; i++) {
+                bottomRowNavRef.appendChild(navItems[i]);
+            }
+
+            return;
+        }
+
+        for(let i = 0; i < navItems.length; i++) {
+            navRef.insertBefore(navItems[i], bottomRowNavRef);
+        }
+
+        let totalItemsWidth = 0;
+
+        for (let i = 0; i < navItems.length; i++) {
+            if (totalItemsWidth < 0) {
+                bottomRowNavRef.appendChild(navItems[i]);
+                continue;
+            }
+
+            const navItemWidth = (navItems[i] as HTMLAnchorElement).offsetWidth;
+            totalItemsWidth += navItemWidth;
+
+            console.log({ navItem: navItems[i], navItemWidth, totalItemsWidth, navWidth, navRef });
+
+            if (totalItemsWidth > navWidth || navItemWidth < 0) {
+                totalItemsWidth = -1;
+                bottomRowNavRef.appendChild(navItems[i]);
+            } else {
+                navRef.insertBefore(navItems[i], bottomRowNavRef);
+            }
+        }
+    }
 </script>
 
 <div class="app">
@@ -89,7 +141,7 @@
             </div>
         </div>
 
-        <nav>
+        <nav bind:this={navRef}>
             {#each navItems as { text, subText, route, icon, iconStyles }}
                 <a
                     href={route}
@@ -108,6 +160,8 @@
                     </div>
                 </a>
             {/each}
+
+            <div class="bottom-row" bind:this={bottomRowNavRef}></div>
         </nav>
     </header>
 
@@ -128,9 +182,17 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        gap: 2rem;
+        gap: 0.5rem;
         padding: 1.5rem 1.5rem 1rem;
         background: var(--neutral-100);
+
+        @media(min-width: 590px) {
+            gap: 1rem;
+        }
+
+        @media(min-width: 768px) {
+            gap: 2rem;
+        }
     }
 
     .top {
@@ -150,6 +212,12 @@
             background: var(--neutral-300);
         };
 
+        & .logo {
+            &:hover {
+                color: var(--neutral-400);
+            }
+        }
+
         & .side {
             display: flex;
             gap: 1rem;                
@@ -157,6 +225,11 @@
 
             &.right {
                 justify-content: flex-end;
+                align-items: flex-start;
+                
+                & a {
+                    line-height: 1.1rem;
+                }
             }
 
             &.left {
@@ -180,20 +253,27 @@
     nav {
         display: flex;
         justify-content: center;
-        gap: 2rem;
         flex-wrap: wrap;
         width: 100%;
 
         & .nav-item {
             position: relative;
             display: flex;
-            padding-bottom: 0.5rem;
+            padding: 0 1rem;
             border-bottom: 2px solid transparent;
             text-decoration: none;
             transition: all 0.25s ease-in-out;
 
             &.active {
-                border-bottom: 2px solid var(--accent1-500);
+                &:after {
+                    content: ' ';
+                    position: absolute;
+                    top: calc(100% + 5px);
+                    left: 0;
+                    width: 100%;
+                    height: 2px;
+                    background: var(--accent1-500);
+                }
 
                 & .nav-item-text {
                     color: var(--accent1-500);
@@ -207,12 +287,47 @@
             }
         }
 
+        & .bottom-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            min-width: 100%;
+            max-width: 100%;
+            padding-top: 1rem;
+
+            & .nav-item {
+                margin: 0 0.5rem 1rem;
+                padding: 0 0.5rem;
+
+                & .nav-item-icon {
+                    margin-right: 0.25rem;
+
+                    & i {
+                        font-size: 1.1rem;
+                    }
+                }
+
+                & .nav-item-text {
+                    font-size: 1.2rem;
+                    line-height: 1.5rem;
+                }
+
+                & .nav-item-subtext {
+                    display: none;
+                }
+            }
+
+            @media(min-width: 590px) {
+                display: flex;
+                justify-content: center;
+            }
+        }
+
         & .nav-item-icon {
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 0.5rem;
-            /* color: var(--neutral-700); */
             
             & i {
                 font-size: 2rem;
@@ -229,11 +344,11 @@
             line-height: 2rem;
             transition: all 0.25s ease-in-out;
             text-align: left;
+            white-space: nowrap;
         }
 
         & .nav-item-subtext {
             font-size: 0.75rem;
-            /* color: var(--neutral-700); */
             line-height: 1rem;
             white-space: nowrap;
         }
@@ -255,6 +370,4 @@
             font-size: 2.25rem;
         }
     }
-
-
 </style>

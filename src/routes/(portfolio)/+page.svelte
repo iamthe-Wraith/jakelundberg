@@ -90,14 +90,15 @@
 
         & .intro-content {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             gap: 1rem;
             max-width: 50rem;
             margin: 0 auto;
 
             & img {
-                width: 15rem;
-                height: 15rem;
+                width: 10rem;
+                height: 10rem;
+                margin: 0 auto;
                 animation: float 5s ease-in-out infinite;
             }
 
@@ -123,6 +124,27 @@
             & a {
                 text-decoration: none;
             }
+        }
+    }
+
+    @media (min-width: 500px) {
+        .intro .intro-content {
+            flex-direction: row;
+            gap: 0.5rem;
+        }
+    }
+
+    @media (min-width: 620px) {
+        .intro .intro-content img {
+            width: 10rem;
+            height: 10rem;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .intro .intro-content img {
+            width: 12rem;
+            height: 12rem;
         }
     }
 </style>
