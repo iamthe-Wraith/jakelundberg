@@ -2,6 +2,7 @@
     import './global.css';
     import { page } from '$app/stores';  
 	import { onMount } from 'svelte';
+	import CareerExp from '$lib/components/CareerExp.svelte';
 
     const socialItems = [
         {
@@ -106,8 +107,6 @@
             const navItemWidth = (navItems[i] as HTMLAnchorElement).offsetWidth;
             totalItemsWidth += navItemWidth;
 
-            console.log({ navItem: navItems[i], navItemWidth, totalItemsWidth, navWidth, navRef });
-
             if (totalItemsWidth > navWidth || navItemWidth < 0) {
                 totalItemsWidth = -1;
                 bottomRowNavRef.appendChild(navItems[i]);
@@ -120,49 +119,53 @@
 
 <div class="app">
     <header>
-        <div class="top">
-            <div class="side left"></div>
-
-            <a href="/" class="logo">
-                <i class="fa-regular fa-ghost"></i>
-            </a>
-
-            <div class="side right">
-                {#each socialItems as { text, route, icon }}
+        <div class="nav-container">
+            <div class="top">
+                <div class="side left"></div>
+    
+                <a href="/" class="logo">
+                    <i class="fa-regular fa-ghost"></i>
+                </a>
+    
+                <div class="side right">
+                    {#each socialItems as { text, route, icon }}
+                        <a
+                            href={route}
+                            target="_blank"
+                            class="social-item"
+                            aria-label={text}
+                        >
+                            <i class={icon}></i>
+                        </a>
+                    {/each}
+                </div>
+            </div>
+    
+            <nav bind:this={navRef}>
+                {#each navItems as { text, subText, route, icon, iconStyles }}
                     <a
                         href={route}
-                        target="_blank"
-                        class="social-item"
-                        aria-label={text}
+                        class="nav-item {$page.url.pathname === route ? 'active' : ''}"
+                        target={route.startsWith('http') ? '_blank' : ''}
                     >
-                        <i class={icon}></i>
+                        <div class="nav-item-icon">
+                            <i class={icon} style={ iconStyles ?? '' }></i>
+                        </div>
+    
+                        <div class="nav-item-text-container">
+                            <span class="nav-item-text h4">{text}</span>
+                            {#if subText}
+                                <span class="nav-item-subtext">{subText}</span>
+                            {/if}
+                        </div>
                     </a>
                 {/each}
-            </div>
+    
+                <div class="bottom-row" bind:this={bottomRowNavRef}></div>
+            </nav>
         </div>
 
-        <nav bind:this={navRef}>
-            {#each navItems as { text, subText, route, icon, iconStyles }}
-                <a
-                    href={route}
-                    class="nav-item {$page.url.pathname === route ? 'active' : ''}"
-                    target={route.startsWith('http') ? '_blank' : ''}
-                >
-                    <div class="nav-item-icon">
-                        <i class={icon} style={ iconStyles ?? '' }></i>
-                    </div>
-
-                    <div class="nav-item-text-container">
-                        <span class="nav-item-text h4">{text}</span>
-                        {#if subText}
-                            <span class="nav-item-subtext">{subText}</span>
-                        {/if}
-                    </div>
-                </a>
-            {/each}
-
-            <div class="bottom-row" bind:this={bottomRowNavRef}></div>
-        </nav>
+        <CareerExp />
     </header>
 
     <main>
@@ -182,9 +185,17 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        gap: 0.5rem;
-        padding: 1.5rem 1.5rem 1rem;
+        gap: 1rem;
         background: var(--neutral-100);
+    }
+
+    .nav-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
 
         @media(min-width: 590px) {
             gap: 1rem;
@@ -200,7 +211,7 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        padding-bottom: 1rem;
+        padding: 1.5rem 1.5rem 1rem;
 
         &:before {
             content: '';
@@ -254,7 +265,9 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        width: 100%;
+        width: 96%;
+        margin: 0 auto;
+        padding: 0;
 
         & .nav-item {
             position: relative;
@@ -293,10 +306,9 @@
             flex-wrap: wrap;
             min-width: 100%;
             max-width: 100%;
-            padding-top: 1rem;
 
             & .nav-item {
-                margin: 0 0.5rem 1rem;
+                margin: 1rem 0.5rem 0;
                 padding: 0 0.5rem;
 
                 & .nav-item-icon {

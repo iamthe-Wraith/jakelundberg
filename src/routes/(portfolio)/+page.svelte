@@ -63,11 +63,12 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            min-height: 20rem;
+            /* min-height: 20rem; */
 
             & img {
                 width: 100%;
                 height: 100%;
+                min-height: 20rem;
                 object-fit: cover;
             }
         }
@@ -77,7 +78,7 @@
         position: relative;
         width: 94%;
         max-width: 60rem;
-        margin: -5rem auto 3rem;
+        margin: -7vw auto 3rem;
         padding: 2rem 1rem;
         border-top: 5px solid var(--primary-500);
         background: var(--neutral-200);

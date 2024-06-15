@@ -346,3 +346,18 @@ p {
 		transform: translateY(0);
 	}
 }
+
+@keyframes shine {
+	0% {
+		left: -100%;
+	}
+	25% {
+		left: -100%;
+	}
+	75% {
+		left: 200%;
+	}
+	100% {
+		left: 200%;
+	}
+}
