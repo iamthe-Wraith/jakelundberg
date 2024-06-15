@@ -3,24 +3,8 @@
     import { page } from '$app/stores';  
 	import { onMount } from 'svelte';
 	import CareerExp from '$lib/components/CareerExp.svelte';
-
-    const socialItems = [
-        {
-            text: 'GitHub',
-            route: 'https://github.com/iamthe-Wraith',
-            icon: 'fa-brands fa-github',
-        },
-        {
-            text: 'LinkedIn',
-            route: 'https://www.linkedin.com/in/jake-lundberg/',
-            icon: 'fa-brands fa-linkedin',
-        },
-        {
-            text: 'Dev.to',
-            route: 'https://dev.to/wraith',
-            icon: 'fa-brands fa-dev',
-        }
-    ];
+	import Logo from '$lib/components/Logo.svelte';
+	import SocialLinks from '$lib/components/SocialLinks.svelte';
 
     const navItems = [
         {
@@ -123,21 +107,10 @@
             <div class="top">
                 <div class="side left"></div>
     
-                <a href="/" class="logo">
-                    <i class="fa-regular fa-ghost"></i>
-                </a>
+                <Logo />
     
                 <div class="side right">
-                    {#each socialItems as { text, route, icon }}
-                        <a
-                            href={route}
-                            target="_blank"
-                            class="social-item"
-                            aria-label={text}
-                        >
-                            <i class={icon}></i>
-                        </a>
-                    {/each}
+                    <SocialLinks />
                 </div>
             </div>
     
@@ -171,12 +144,27 @@
     <main>
         <slot></slot>
     </main>
+
+    <footer>
+        <div class="side left">
+            <p class="copywrite">&copy; {new Date().getFullYear()} Jake Lundberg</p>
+        </div>
+
+        <Logo />
+
+        <div class="side right">
+            <SocialLinks />
+        </div>
+    </footer>
 </div>
 
 <style>
     .app {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         width: 100vw;
-        height: 100vh;
+        min-height: 100vh;
         overflow: auto;
     }
 
@@ -223,12 +211,6 @@
             background: var(--neutral-300);
         };
 
-        & .logo {
-            &:hover {
-                color: var(--neutral-400);
-            }
-        }
-
         & .side {
             display: flex;
             gap: 1rem;                
@@ -246,18 +228,6 @@
             &.left {
                 justify-content: flex-start;
             }
-        }
-    }
-
-    .social-item {
-        color: var(--neutral-600);
-
-        &:hover {
-            color: var(--accent1-500);
-        }
-
-        & i {
-            font-size: 1.25rem;
         }
     }
 
@@ -373,13 +343,31 @@
         }
     }
 
-    .logo {
-        display: flex;
-        color: var(--primary-500);
-        color: var(--neutral-900);
+    main {
+        flex-grow: 1;
+    }
 
-        & i {
-            font-size: 2.25rem;
+    footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2rem;
+        padding: 1rem 3rem;
+        background: var(--neutral-100);
+
+        & > div:first-child {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+            justify-content: space-between;
+        }
+
+        & .copywrite {
+            margin: 0;
+            font-size: 0.75rem;
+            color: var(--neutral-600);
+            line-height: 0.9rem;
         }
     }
 </style>

@@ -8,8 +8,6 @@
     let blogPosts: IBlogPost[] = [];
 
     $: blogPosts = data?.blog?.posts ?? [];
-
-    $: console.log(blogPosts);
 </script>
 
 <div class="container">
@@ -68,7 +66,11 @@
 
             <div class="blog-posts">
                 {#each blogPosts as post}
-                    <a href={post.url} class="blog-post">
+                    <a
+                        href={post.url}
+                        target="_blank"
+                        class="blog-post"
+                    >
                         <div>
                             <div class="blog-post-image">
                                 <img
