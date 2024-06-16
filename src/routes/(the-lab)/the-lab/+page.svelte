@@ -103,12 +103,6 @@
 </div>
 
 <style>
-    .page {
-        /* background: url('https://res.cloudinary.com/dxpwpno1e/image/upload/v1718307148/spraypaint-flicks_hsdgjl.png') no-repeat;
-        background-size: 100%;
-        background-position: -4rem -4rem; */
-    }
-
 	.container {
 		width: 96%;
 		max-width: 50rem;

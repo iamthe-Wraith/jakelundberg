@@ -47,8 +47,6 @@ export class BlogService {
             const posts = await res.json();
             return (posts ?? []).filter((post: any) => post.type_of === 'article');
         } catch (err) {
-            console.error(err);
-
             throw err;
         }
     }

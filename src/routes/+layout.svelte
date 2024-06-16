@@ -5,6 +5,7 @@
 	import CareerExp from '$lib/components/CareerExp.svelte';
 	import Logo from '$lib/components/Logo.svelte';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
+	import Toast from '$lib/components/modals/Toast.svelte';
 
     const navItems = [
         {
@@ -156,6 +157,8 @@
             <SocialLinks />
         </div>
     </footer>
+
+    <Toast />
 </div>
 
 <style>
@@ -173,7 +176,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        gap: 1rem;
+        gap: 1.5rem;
         background: var(--neutral-100);
     }
 
