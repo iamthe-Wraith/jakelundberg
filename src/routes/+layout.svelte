@@ -352,10 +352,11 @@
 
     footer {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column-reverse;
         align-items: center;
         margin-top: 2rem;
-        padding: 1rem 3rem;
+        gap: 1rem;
+        padding: 1rem;
         background: var(--neutral-100);
 
         & > div:first-child {
@@ -371,6 +372,13 @@
             font-size: 0.75rem;
             color: var(--neutral-600);
             line-height: 0.9rem;
+        }
+
+        @media (min-width: 500px) {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 1rem 3rem;
         }
     }
 </style>

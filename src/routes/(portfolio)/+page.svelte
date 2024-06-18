@@ -41,9 +41,9 @@
                 </p>
         
                 <p>
-                    I'll be your guide as you explore the grounds of Wraith Manor, once the home of
-                    a mad engineer named <span>Jake Lundberg</span>, whose passion for building software 
-                    led him to create many strange and wonderful things for the web.
+                    I'll be your guide as you explore the grounds of Wraith Manor, the home of
+                    a mad software engineer named <span>Jake Lundberg</span>, whose passion for building software 
+                    has led him to create many strange and wonderful things for the web.
                 </p>
 
                 <p>
@@ -52,9 +52,7 @@
         
                 <p>
                     Ever since Jake mysteriously disappeared from his lab, strange things have been
-                    happening here. 
-                    
-                    ...
+                    happening here.
                 </p>
             </div>
         </div>
