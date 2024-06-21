@@ -9,6 +9,7 @@
 
 <style>
     .experiment-header {
+        margin-top: 3rem;
         padding: 0 1rem;
         margin-bottom: 2rem;
 
