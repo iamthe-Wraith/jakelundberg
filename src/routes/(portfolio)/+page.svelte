@@ -2,6 +2,7 @@
 	import type { IBlogPost } from "$lib/services/blog";
 	import dayjs from "dayjs";
 	import type { PageData } from "./$types";
+	import Bugz from "$lib/components/Bugz.svelte";
 
     export let data: PageData;
 
@@ -30,10 +31,9 @@
         <p class="h1">Welcome to Wraith Manor</p>
 
         <div class="intro-content">
-            <img
-                src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1718376369/bugs-hi-square_uxkso5.png"
-                alt="A cute cartoon wraith with big, innocent eyes and a red cloak waving at the viewer."
-            />
+            <div class="img-container">
+                <Bugz />
+            </div>
     
             <div>
                 <p>
@@ -153,15 +153,13 @@
             max-width: 50rem;
             margin: 0 auto;
 
-            & img {
-                width: 10rem;
-                height: 10rem;
-                margin: 0 auto;
-                animation: float 5s ease-in-out infinite;
-            }
-
             & p:last-child {
                 margin-bottom: 0;
+            }
+
+            & .img-container {
+                display: flex;
+                justify-content: center;
             }
         }
 
@@ -282,20 +280,6 @@
         .intro .intro-content {
             flex-direction: row;
             gap: 0.5rem;
-        }
-    }
-
-    @media (min-width: 620px) {
-        .intro .intro-content img {
-            width: 10rem;
-            height: 10rem;
-        }
-    }
-
-    @media (min-width: 768px) {
-        .intro .intro-content img {
-            width: 12rem;
-            height: 12rem;
         }
     }
 
