@@ -1,6 +1,7 @@
 services:
   app:
     image: iamthewraith/jakelundberg-dev:latest
+    restart: always
     ports:
       - "3000:3000"
     secrets:
