@@ -3,3 +3,12 @@ services:
     image: iamthewraith/jakelundberg-dev:latest
     ports:
       - "3000:3000"
+    secrets:
+      - DEV_TO_API_KEY
+      - VALTOWN_AUTH_TOKEN
+
+secrets:
+  DEV_TO_API_KEY:
+    file: .env
+  VALTOWN_AUTH_TOKEN:
+    file: .env

@@ -1,4 +1,4 @@
-name: Publish Docker Image
+name: Deploy
 
 on:
     push:
@@ -6,8 +6,8 @@ on:
             - main
 
 jobs:
-    docker:
-        name: Push Docker image to Docker Hub
+    deploy:
+        name: Deploy
         runs-on: ubuntu-latest
         steps:
             -
@@ -22,13 +22,6 @@ jobs:
                     password: ${{ secrets.DOCKER_PASSWORD }}
 
             -
-                name: Set environment variables
-                run: |
-                    rm -rf .env
-                    echo "DEV_TO_API_KEY=${{ secrets.DEV_TO_API_KEY }}" >> .env
-                    echo "VALTOWN_AUTH_TOKEN=${{ secrets.VALTOWN_AUTH_TOKEN }}" >> .env
-
-            -
                 name: Build docker image
                 run: |
                     docker build . -t iamthewraith/jakelundberg-dev:latest
@@ -36,4 +29,15 @@ jobs:
             -
                 name: Push docker image
                 run: |
-                    docker push iamthewraith/jakelundberg-dev:latest                 
+                    docker push iamthewraith/jakelundberg-dev:latest  
+
+            -
+                name: copy docker-compose file to vps
+                uses: appleboy/scp-action@v0.1.7
+                with:
+                    host: ${{ secrets.SSH_HOST}}
+                    username: ${{ secrets.SSH_USERNAME }}
+                    key: ${{ secrets.SSH_KEY}}
+                    port: ${{ secrets.SSH_PORT }}
+                    source: "docker-compose.yaml"
+                    target: ${{ secrets.SSH_TARGET }}
