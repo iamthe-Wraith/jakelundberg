@@ -51,8 +51,7 @@
                 </p>
         
                 <p>
-                    Ever since Jake mysteriously disappeared from his lab, strange things have been
-                    happening here.
+                    Ever since Jake found the previous owner's old lab, strange things have been happening around here.
                 </p>
             </div>
         </div>
