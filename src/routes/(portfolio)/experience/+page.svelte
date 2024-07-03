@@ -15,8 +15,7 @@
 
 		<div class="intro row">
 			<p>
-				Jake has been writing software for over 10 years now and from what he's told me he's had the privilege of working
-				on some great projects with some amazing companies and teams during that time. 
+				...
 			</p>
 
 			<div class="img-container">

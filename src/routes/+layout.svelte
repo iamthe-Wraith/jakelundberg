@@ -32,7 +32,7 @@
         {
             text: 'The Lab',
             subText: 'Where I experiment',
-            route: '/the-lab',
+            route: 'https://wraithcode.io/the-lab',
             icon: 'fa-regular fa-flask-round-poison',
             iconStyles: 'transform: rotate(8deg);'
         },
