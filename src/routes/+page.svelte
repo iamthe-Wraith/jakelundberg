@@ -51,7 +51,7 @@
                 </p>
         
                 <p>
-                    Ever since Jake found the previous owner's old lab, strange things have been happening around here.
+                    Strange things have been known to happen around here.
                 </p>
             </div>
         </div>
