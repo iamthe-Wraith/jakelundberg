@@ -11,7 +11,7 @@ export const load: PageServerLoad = async () => {
     try {
         const blogService = new BlogService();
         posts = await blogService.getPosts(1, 3);
-    } catch (err) {
+    } catch {
         // swallowing error
     }
 

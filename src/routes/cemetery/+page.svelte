@@ -36,8 +36,6 @@
 				...
 			</p>
 		</div>
-
-		
 	</section>
 
 	<section class="work">

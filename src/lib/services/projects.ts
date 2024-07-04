@@ -2,6 +2,7 @@ interface IProject {
     id: number;
     title: string;
     url: string;
+    image: string|null,
     summary: string;
     links: string[];
     tags: string[];
@@ -15,6 +16,7 @@ export class ProjectsService {
             id: 5,
             title: 'BuzyBee',
             url: 'https://buzybee.buzz',
+            image: null,
             summary: '',
             links: [],
             tags: [],
@@ -24,6 +26,7 @@ export class ProjectsService {
             id: 4,
             title: 'Wraithcode',
             url: 'https://wraithcode.io',
+            image: null,
             summary: '',
             links: [],
             tags: [],
@@ -33,6 +36,7 @@ export class ProjectsService {
             id: 3,
             title: 'jakelunderg.dev',
             url: 'https://jakelunderg.dev',
+            image: null,
             summary: '',
             links: [],
             tags: [],
@@ -42,6 +46,7 @@ export class ProjectsService {
             id: 2,
             title: 'YumYum Recipes',
             url: 'https://yumyum.wraithcode.io',
+            image: null,
             summary: '',
             links: [],
             tags: [],
@@ -51,6 +56,7 @@ export class ProjectsService {
             id: 1,
             title: 'Igor',
             url: 'https://github.com/iamthe-Wraith/igor',
+            image: null,
             summary: '',
             links: [],
             tags: [],
