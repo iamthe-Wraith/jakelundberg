@@ -36,18 +36,14 @@ export interface IBlogPost {
 
 export class BlogService {
     async getPosts(page = 1, perPage = 10): Promise<IBlogPost[]> {
-        try {
-            const res = await fetch(`https://dev.to/api/articles/me?page=${page}&per_page=${perPage}`, {
-                headers: {
-                    'api-key': DEV_TO_API_KEY,
-                    'Content-Type': 'application/json'
-                }
-            });
-        
-            const posts = await res.json();
-            return (posts ?? []).filter((post: any) => post.type_of === 'article');
-        } catch (err) {
-            throw err;
-        }
+        const res = await fetch(`https://dev.to/api/articles/me?page=${page}&per_page=${perPage}`, {
+            headers: {
+                'api-key': DEV_TO_API_KEY,
+                'Content-Type': 'application/json'
+            }
+        });
+    
+        const posts = await res.json();
+        return (posts ?? []).filter((post: IBlogPost) => post.type_of === 'article');
     }
 }
