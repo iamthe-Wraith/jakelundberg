@@ -9,45 +9,45 @@
 
     const navItems = [
         {
-            text: 'Experience',
-            subText: 'Stuff I\'ve worked on',
-            route: '/experience',
-            icon: 'fa-regular fa-laptop-code',
+            text: 'Cemetery',
+            subText: 'Where projects go to rest',
+            route: '/cemetery',
+            icon: 'fa-regular fa-tombstone-blank',
             iconStyles: 'transform: rotate(2deg);'
         },
         {
-            text: 'About',
+            text: 'Study',
             subText: 'Beyond the code',
-            route: '/about',
-            icon: 'fa-regular fa-person-pinball',
+            route: '/study',
+            icon: 'fa-regular fa-lamp-desk',
             iconStyles: 'transform: rotate(0deg);'
         },
         {
-            text: 'Blog',
-            subText: 'Learn it. Share it',
-            route: 'https://dev.to/wraith',
-            icon: 'fa-regular fa-blog',
+            text: 'Library',
+            subText: 'Learn stuff and share it',
+            route: '/library',
+            icon: 'fa-regular fa-books',
             iconStyles: 'transform: rotate(-6deg);'
         },
         {
             text: 'The Lab',
-            subText: 'Where I experiment',
+            subText: 'A place to experiment',
             route: 'https://wraithcode.io/the-lab',
             icon: 'fa-regular fa-flask-round-poison',
             iconStyles: 'transform: rotate(8deg);'
         },
         {
-            text: 'Uses',
-            subText: 'Tools I use',
-            route: '/uses',
+            text: 'Tool Chest',
+            subText: 'Tools and gear',
+            route: '/tool-chest',
             icon: 'fa-regular fa-gear-complex-code',
             iconStyles: 'transform: rotate(-4deg);'
         },
         {
-            text: 'Contact',
+            text: 'Mailbox',
             subText: 'Get in touch',
-            route: '/contact',
-            icon: 'fa-regular fa-at',
+            route: '/mailbox',
+            icon: 'fa-regular fa-mailbox-flag-up',
             iconStyles: 'transform: rotate(5deg);'
         }
     ];

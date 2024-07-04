@@ -26,6 +26,18 @@
 
 	<section class="projects">
 		<h2>Projects</h2>
+
+		<div class="row">
+			<div class="img-container">
+				<Bugz is="waving" />
+			</div>
+
+			<p>
+				...
+			</p>
+		</div>
+
+		
 	</section>
 
 	<section class="work">

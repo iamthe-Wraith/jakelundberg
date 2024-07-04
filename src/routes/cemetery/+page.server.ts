@@ -5,6 +5,54 @@ import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
 export const load: PageServerLoad = async () => {
+    const projects = [
+        {
+            id: 5,
+            title: 'BuzyBee',
+            url: 'https://buzybee.buzz',
+            summary: '',
+            links: [],
+            tags: [],
+            featured: true,
+        },
+        {
+            id: 4,
+            title: 'Wraithcode',
+            url: 'https://wraithcode.io',
+            summary: '',
+            links: [],
+            tags: [],
+            featured: true,
+        },
+        {
+            id: 3,
+            title: 'jakelunderg.dev',
+            url: 'https://jakelunderg.dev',
+            summary: '',
+            links: [],
+            tags: [],
+            featured: true,
+        },
+        {
+            id: '2',
+            title: 'YumYum Recipes',
+            url: 'https://yumyum.wraithcode.io',
+            summary: '',
+            links: [],
+            tags: [],
+            featured: true,
+        },
+        {
+            id: '1',
+            title: 'Igor',
+            url: 'https://github.com/iamthe-Wraith/igor',
+            summary: '',
+            links: [],
+            tags: [],
+            featured: true,
+        }
+    ];
+
     const work = [
         {
             id: 5,
@@ -100,6 +148,7 @@ export const load: PageServerLoad = async () => {
     ];
 
     return {
+        projects,
         work,
     };
 };
