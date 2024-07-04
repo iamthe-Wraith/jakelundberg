@@ -1,6 +1,5 @@
 import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
-import { z } from 'zod'; 
 import { ApiResponse } from '$lib/utils/api-response';
 import { ApiError } from '$lib/utils/api-error';
 import { HttpStatus } from '$lib/constants/error';
@@ -9,7 +8,7 @@ import { contactMessageSchema, contactNameSchema, emailSchema } from '$lib/utils
 
 export const actions: Actions = {
     default: async ({ request }) => {
-        let errors: ApiError[] = [];
+        const errors: ApiError[] = [];
 
         const data = await request.formData();
         const name = data.get('name')! as string;

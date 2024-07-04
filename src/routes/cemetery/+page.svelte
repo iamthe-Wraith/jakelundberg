@@ -55,7 +55,7 @@
 			</p>
 		</div>
 
-		{#each data.work as job}
+		{#each data.jobs as job}
 			<article>
 				<div class="dates">
 					<p>
