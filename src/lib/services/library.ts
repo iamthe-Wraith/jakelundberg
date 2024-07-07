@@ -1,29 +1,25 @@
+import type { SanityClient } from "@sanity/client";
+import { CMSService } from "./cms-service";
+
 export interface IBook {
     id: number;
+    rank: number;
     title: string;
     url: string|undefined;
     image: string|undefined;
-    summary: string|undefined;
-    tags: string[];
+    favorite: boolean;
     currentlyReading: boolean;
     read: boolean;
+    summary: string|undefined;
 }
 
-export class LibraryService {
-    private books: IBook[] = [];
+export class LibraryService extends CMSService {
     // TODO: add other resource types like blog posts, videos, etc.
 
-    /**
-     * Get an array of books by their ids.
-     * 
-     * If an id is not found, it will be ignored.
-     * 
-     * @param {number[]} - ids An array of book ids
-     * @returns {IBook[]} An array of books
-     */
-    async getBooksByIds(ids: number[]): Promise<IBook[]> {
-        // TODO: store books in a database and fetch them here
-        return this.books.filter(book => book.id in ids);
+    private bookProjection = `{ "id": _id, rank, title, url, image, favorite, currentlyReading, read, summary }`;
+
+    public constructor(client: SanityClient) {
+        super(client);
     }
 
     /**
@@ -32,18 +28,7 @@ export class LibraryService {
      * @returns {IBook[]} An array of books
      */
     async getBooksRead(): Promise<IBook[]> {
-        // TODO: store books in a database and fetch them here
-        return this.books.filter(book => book.read);
-    }
-
-    /**
-     * Get the books on my reading list that I have not read yet.
-     * 
-     * @returns {IBook[]} An array of books
-     */
-    async getUnreadBooks(): Promise<IBook[]> {
-        // TODO: store books in a database and fetch them here
-        return this.books.filter(book => !book.read);
+        return this.fetch(`*[_type == "book" && read == true] ${this.bookProjection}`)
     }
 
     /**
@@ -52,7 +37,24 @@ export class LibraryService {
      * @returns {IBook[]} An array of books
      */
     async getCurrentlyReading(): Promise<IBook[]> {
-        // TODO: store books in a database and fetch currently reading here
-        return this.books.filter(book => book.currentlyReading);
+        return this.fetch(`*[_type == "book" && currentlyReading == true] ${this.bookProjection}`)
+    }
+
+    /**
+     * Get my favorite books.
+     *  
+     * @returns {IBook[]} An array of books
+     */
+    async getFavoriteBooks(): Promise<IBook[]> {
+        return this.fetch(`*[_type == "book" && favorite == true] ${this.bookProjection}`)
+    }
+
+    /**
+     * Get the books on my reading list that I have not read yet.
+     * 
+     * @returns {IBook[]} An array of books
+     */
+    async getUnreadBooks(): Promise<IBook[]> {
+        return this.fetch(`*[_type == "book" && read == false] ${this.bookProjection}`)
     }
 }
