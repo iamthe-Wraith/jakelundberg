@@ -1,4 +1,5 @@
 import type { SanityClient } from "@sanity/client";
+import { Logger } from "./logger";
 
 export class CMSService {
     private client: SanityClient;
@@ -8,6 +9,11 @@ export class CMSService {
     }
 
     public fetch<T>(query: string): Promise<T> {
-        return this.client.fetch(query);
+        try {
+            return this.client.fetch(query);
+        } catch (err: unknown) {
+            Logger.error((err as Error).message);
+            throw err;
+        }
     }
 }

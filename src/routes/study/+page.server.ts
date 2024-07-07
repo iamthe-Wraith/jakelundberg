@@ -1,9 +1,5 @@
 import type { PageServerLoad } from "./$types";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
 import { MeService, type IFavorite, type IHobby } from "$lib/services/me";
-
-dayjs.extend(utc);
 
 interface IFavorites {
     movies: IFavorite[];
