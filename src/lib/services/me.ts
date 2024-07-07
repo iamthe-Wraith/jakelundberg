@@ -1,43 +1,40 @@
-import { LibraryService, type IBook } from "./library";
+import type { SanityClient } from "@sanity/client";
+import { CMSService } from "./cms-service";
+
+export const FavoriteType = {
+    Movie: 'movie',
+    Show: 'show',
+    Game: 'game',
+} as const;
 
 export interface IFavorite {
     id: number;
+    rank: number;
     title: string;
-    url: string|undefined;
-    image: string|undefined;
-    summary: string|undefined;
-    tags: string[];
-    type: 'book'|'movie'|'tvShow'|'game';
+    url: string|null;
+    image: string|null;
+    description: string|null;
+    favoriteType: typeof FavoriteType[keyof typeof FavoriteType];   
 }
 
 export interface IHobby {
+    id: string;
     name: string;
     description: string;
 }
 
-export class MeService {
-    private favoriteBooks: number[] = [];
-    private favorites: IFavorite[] = [];
-    private hobbies: IHobby[] = [];
+export class MeService extends CMSService {
+    public constructor(client: SanityClient) {
+        super(client);
+    }   
 
     /**
      * Get all my favorite things.
      * 
      * @returns {IFavorites} An object containing favorite books, movies, tv shows, and games
      */
-    async getAllFavorites(): Promise<IFavorite[]> {
-        // TODO: store favorites in a database and fetch them here
-        return this.favorites;
-    }
-
-    /**
-     * Get an array of my favorite books.
-     * 
-     * @returns {IBook[]} An array of books
-     */
-    async getFavoriteBooks(): Promise<IBook[]> {
-        const libraryService = new LibraryService();
-        return await libraryService.getBooksByIds(this.favoriteBooks);
+    public getAllFavorites = async (): Promise<IFavorite[]> => {
+        return this.fetch(this.renderFavoriteQuery());
     }
 
     /**
@@ -45,9 +42,8 @@ export class MeService {
      * 
      * @returns {IFavorite[]} An array of movies
      */
-    async getFavoriteMovies(): Promise<IFavorite[]> {
-        // TODO: store favorites in a database and fetch them here
-        return this.favorites.filter(favorite => favorite.type === 'movie');
+    public getFavoriteMovies = async (): Promise<IFavorite[]> => {
+        return this.fetch(this.renderFavoriteQuery(FavoriteType.Movie));
     }
 
     /**
@@ -55,9 +51,8 @@ export class MeService {
      * 
      * @returns {IFavorite[]} An array of tv shows
      */
-    async getFavoriteTvShows(): Promise<IFavorite[]> {
-        // TODO: store favorites in a database and fetch them here
-        return this.favorites.filter(favorite => favorite.type === 'tvShow');
+    public getFavoriteShows = async (): Promise<IFavorite[]> => {
+        return this.fetch(this.renderFavoriteQuery(FavoriteType.Show));
     }
 
     /**
@@ -65,9 +60,8 @@ export class MeService {
      * 
      * @returns {IFavorite[]} An array of games
      */
-    async getFavoriteGames(): Promise<IFavorite[]> {
-        // TODO: store favorites in a database and fetch them here
-        return this.favorites.filter(favorite => favorite.type === 'game');
+    public getFavoriteGames = async (): Promise<IFavorite[]> => {
+        return this.fetch(this.renderFavoriteQuery(FavoriteType.Game));
     }
 
     /**
@@ -75,8 +69,15 @@ export class MeService {
      * 
      * @returns {IHobby[]} An array of hobbies
      */
-    async getHobbies(): Promise<IHobby[]> {
-        // TODO: store hobbies in a database and fetch them here
-        return this.hobbies;
+    public getHobbies = async (): Promise<IHobby[]> => {
+        return this.fetch(this.renderHobbyQuery());
+    }
+
+    private renderFavoriteQuery = (type?: typeof FavoriteType[keyof typeof FavoriteType]) => {
+        return `*[_type == "favorite"${type ? `&& favoriteType == "${type}"` : ''}] { "id": _id, rank, title, url, image, description, favoriteType }`;
+    }
+
+    private renderHobbyQuery = () => {
+        return `*[_type == "hobby"] { "id": _id, name, description }`;
     }
 }

@@ -1,3 +1,11 @@
+<script lang="ts">
+	import type { PageData } from "./$types";
+
+	export let data: PageData;
+
+	$: console.log(data);
+</script>
+
 <div class="container">
     <h1>About Me</h1>
 </div>
