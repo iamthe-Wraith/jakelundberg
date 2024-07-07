@@ -3,11 +3,14 @@
 	import dayjs from "dayjs";
 	import type { PageData } from "./$types";
 	import Bugz from "$lib/components/Bugz.svelte";
+	import type { IBook } from "$lib/services/library";
 
     export let data: PageData;
 
+    let currentlyReading: IBook[] = [];
     let blogPosts: IBlogPost[] = [];
 
+    $: currentlyReading = data?.currentlyReading ?? [];
     $: blogPosts = data?.blog?.posts ?? [];
 </script>
 
@@ -27,7 +30,7 @@
         </div>
     </div>
 
-    <div class="intro">
+    <section class="intro">
         <p class="h1">Welcome to Wraith Manor</p>
 
         <div class="intro-content">
@@ -55,10 +58,24 @@
                 </p>
             </div>
         </div>
-    </div>
+    </section>
+
+    {#if currentlyReading.length > 0}
+        <section class="currently-reading">
+            <h2>Currently Reading</h2>
+
+            <div class="currently-reading-list">
+                {#each currentlyReading as book}
+                    <a href="{book.url}" target="_blank" class="book">
+                        <img src={book.image} alt={book.title} />
+                    </a>
+                {/each}
+            </div>
+        </section>
+    {/if}
 
     {#if blogPosts.length > 0}
-        <div class="blog-posts-container">
+        <section class="blog-posts-container">
             <h2>Latest Blog Posts</h2>
 
             <div class="blog-posts">
@@ -101,11 +118,16 @@
                     </a>
                 {/each}
             </div>
-        </div>
+        </section>
     {/if}
 </div>
 
 <style>
+    section {
+        width: 94%;
+        margin: 0 auto 3rem;
+    }
+
     .manor-gate {
         max-width: 80rem;
         margin: 0 auto;
@@ -132,7 +154,6 @@
 
     .intro {
         position: relative;
-        width: 94%;
         max-width: 60rem;
         margin: -7vw auto 3rem;
         padding: 2rem 1rem;
@@ -178,6 +199,40 @@
 
             & a {
                 text-decoration: none;
+            }
+        }
+    }
+
+    .currently-reading {
+        container-type: inline-size;
+        container-name: currently-reading;
+        max-width: 60rem;
+
+        & .currently-reading-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+
+            & .book {
+                width: 10rem;
+                border: 5px solid var(--neutral-300);
+                transition: all 0.2s ease-in-out;
+                
+                &:hover,
+                &:focus-visible {
+                    border-color: var(--primary-500);
+                    transform: scale(1.03);
+                }
+            }
+
+            & img {
+                display: block;
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                object-position: center;
             }
         }
     }
