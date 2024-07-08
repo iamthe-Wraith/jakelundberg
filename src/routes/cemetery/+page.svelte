@@ -9,14 +9,29 @@
 	export let data: PageData;
 </script>
 
-<div class="container">
-	<section>
-		<h1>Experience</h1>
+<div class="cemetery-path">
+	<img
+		src="https://res.cloudinary.com/dxpwpno1e/image/upload/c_scale,w_1024/v1720401233/cemetery_sgsaei.png"
+		alt="A spooky cemetery in the mountains at night with crooked tombstones and creepy trees."
+	/>
+</div>
 
-		<div class="intro row">
-			<p>
-				...
-			</p>
+<div class="container">
+	<section class="intro">
+		<h1>Cemetery</h1>
+
+		<div class="intro-content row">
+			<div>
+				<p>
+					Ah, I see you found the cemetery. Kinda spooky isn't it?
+				</p>
+
+				<p>
+					This is where Jake likes to bury his old projects and work stuff. Feel free to take a look around,
+					but don't wander too far...I've heard strange sounds coming from here at night. And after I heard
+					the rumors of this place, I had to sleep with my nightlight for a month!
+				</p>
+			</div>
 
 			<div class="img-container">
 				<Bugz is="waving" />
@@ -29,7 +44,7 @@
 
 		<div class="row">
 			<div class="img-container">
-				<Bugz is="waving" />
+				<!-- <Bugz is="waving" /> -->
 			</div>
 
 			<p>
@@ -96,18 +111,32 @@
 </div>
 
 <style>
+	.cemetery-path {
+		width: 100%;
+		max-width: 80rem;
+		margin: 0 auto;
+		overflow: hidden;
+
+		& img {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+		}
+	}
+
     .container {
 		width: 96%;
-		max-width: 50rem;
 		margin: 0 auto;
-		padding: 3rem 0.75rem 1rem;
 	}
 
 	section {
+		width: 100%;
+		max-width: 60rem;
+		margin: 0 auto 3rem;
+
 		&:not(:last-of-type) {
 			margin-bottom: 2rem;
 			padding-bottom: 1rem;
-			border-bottom: 1px solid var(--neutral-300);
 		}
 	}
 
@@ -128,11 +157,16 @@
 	}
 
 	.intro {
-		max-width: 50rem;
-		margin: 0 auto;
+		position: relative;
+		max-width: 60rem;
+		margin: -7vw auto 0;
+		padding: 2rem 1rem;
+		border-top: 5px solid var(--primary-500);
+        background: var(--neutral-200);
+        z-index: 1;
 
-		& p {
-			margin-bottom: 0;
+		& .intro-content {
+			flex-direction: column-reverse;
 		}
 	}
 
@@ -232,4 +266,11 @@
 			}
 		}
 	}
+
+	@media (min-width: 500px) {
+        .intro .intro-content {
+            flex-direction: row;
+            gap: 0.5rem;
+        }
+    }
 </style>
