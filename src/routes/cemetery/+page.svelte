@@ -1,12 +1,38 @@
 <script lang="ts">
+	import { onMount } from "svelte";
+	import type { PageData } from "./$types";
 	import dayjs from "dayjs";
 	import utc from "dayjs/plugin/utc";
-	import type { PageData } from "./$types";
+	import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+	import { assets } from '$lib/stores/assets';
+	import { assets as assetsPath } from '$app/paths';
 	import Bugz from "$lib/components/Bugz.svelte";
 
 	dayjs.extend(utc);
 
 	export let data: PageData;
+
+	onMount(() => {
+		loadAssets()
+			.then();
+	})
+
+	function loadAssets(): Promise<void> {
+		return new Promise((resolve, reject) => {
+			new GLTFLoader().load(
+				`${assetsPath}/manor-assets.glb`,
+				(gltf) => {
+					assets.setAssets('outdoor', gltf.scene.children);
+					resolve();
+				},
+				(xhr) => assets.loading('outdoor', xhr.loaded, xhr.total),
+				(error) => {
+					assets.error('outdoor', (error as Error).message);
+					reject(error);
+				},
+			);
+		});
+	}
 </script>
 
 <div class="cemetery-path">
