@@ -6,7 +6,7 @@ import type { InputValue } from '@portabletext/svelte';
 
 dayjs.extend(utc);
 
-interface ITech {
+export interface ITech {
     id: string;
     name: string;
     description: string | null;
@@ -14,7 +14,7 @@ interface ITech {
     image: string | null;
 }
 
-interface IJob {
+export interface IJob {
     id: number;
     position: string;
     companyName: string;
