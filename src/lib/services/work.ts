@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { CMSService } from './cms-service';
 import type { SanityClient } from '@sanity/client';
+import type { InputValue } from '@portabletext/svelte';
 
 dayjs.extend(utc);
 
@@ -21,7 +22,7 @@ interface IJob {
     location: string;
     startDate: Date;
     endDate: Date | null;
-    summary: string;
+    summary: InputValue;
     tech: ITech[];
 }
 

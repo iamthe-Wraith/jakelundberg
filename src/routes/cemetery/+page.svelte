@@ -1,14 +1,40 @@
 <script lang="ts">
+	import { onMount } from "svelte";
+	import type { PageData } from "./$types";
 	import dayjs from "dayjs";
 	import utc from "dayjs/plugin/utc";
-	import type { PageData } from "./$types";
+	import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+	import { assets } from '$lib/stores/assets';
+	import { assets as assetsPath } from '$app/paths';
 	import Bugz from "$lib/components/Bugz.svelte";
+	import Tombstone from "$lib/components/Tombstone.svelte";
+	import TextBlock from "$lib/components/TextBlock.svelte";
 
 	dayjs.extend(utc);
 
 	export let data: PageData;
 
-	$: console.log(data.jobs);
+	onMount(() => {
+		loadAssets()
+			.then();
+	})
+
+	function loadAssets(): Promise<void> {
+		return new Promise((resolve, reject) => {
+			new GLTFLoader().load(
+				`${assetsPath}/manor-assets.glb`,
+				(gltf) => {
+					assets.setAssets('outdoor', gltf.scene.children);
+					resolve();
+				},
+				(xhr) => assets.loading('outdoor', xhr.loaded, xhr.total),
+				(error) => {
+					assets.error('outdoor', (error as Error).message);
+					reject(error);
+				},
+			);
+		});
+	}
 </script>
 
 <div class="cemetery-path">
@@ -29,7 +55,7 @@
 				</p>
 
 				<p>
-					This is where Jake likes to bury his old projects and work stuff. Feel free to take a look around,
+					This is where Jake likes to bury his projects and work stuff. Feel free to take a look around,
 					but don't wander too far...I've heard strange sounds coming from here at night. And after I heard
 					the rumors of this place, I had to sleep with my nightlight for a month!
 				</p>
@@ -70,19 +96,29 @@
 			</p>
 		</div>
 
-		{#each data.jobs as job}
-			<article>
-				<div class="dates">
-					<p>
-						<span>{dayjs(job.startDate).local().format('MMM YYYY')}</span>
-						- 
+		<div class="list-container">
+			{#each data.jobs as job, i (job.id)}
+				<article class="{(i % 2) ? 'reverse' : ''}">
+					<div class="dates">
 						{#if job.endDate}
-							<span>{dayjs(job.endDate).local().format('MMM YYYY')}</span>
+							<!-- TODO: add label for accessibility -->
+
+							<div class="tombstone job-tombstone">
+								<!--
+									there are 4 variants of the tombstone, so will use the remainder
+									of the index divided by 4 (+1 since the variants are identified
+									with starting index of 1) to determine which variant to use
+								-->
+								<Tombstone variant={i % 4 + 1}>
+									{dayjs(job.startDate).local().format('MMM YYYY')}
+									- 
+									{dayjs(job.endDate).local().format('MMM YYYY')}
+								</Tombstone>
+							</div>
 						{:else}
-							<span>Present</span>
+							<div>present...</div>
 						{/if}
-					</p>
-				</div>
+					</div>
 
 				<div class="content">
 					<div class="header">
@@ -90,14 +126,14 @@
 							{job.position}&#12539;{job.companyName}
 						</a>
 					</div>
-					
+
 					<div class="metadata">
 						<p>{job.location}</p>
 					</div>
 	
 					{#if job.summary}
 						<div class="summary">
-							<p>{job.summary}</p>
+							<TextBlock text={job.summary} />
 						</div>
 					{/if}
 
@@ -106,9 +142,9 @@
 							<a href="{tech.url}" class="tech">{tech.name}</a>
 						{/each}
 					</div>
-				</div>
-			</article>
-		{/each}
+				</article>
+			{/each}
+		</div>
 	</section>
 </div>
 
@@ -172,10 +208,18 @@
 		}
 	}
 
+	.list-container {
+		padding-top: 14rem;
+
+		@media (min-width: 768px) {
+			padding-top: 0;
+		}
+	}
+
 	article {
 		display: flex;
 		flex-direction: column;
-		padding: 0.5rem 1rem;
+		padding: 7rem 1rem 0.5rem;
 		border: 5px solid var(--neutral-300);
 		transition: 0.2s ease-in-out;
 
@@ -187,7 +231,7 @@
 		}
 
 		&:not(:last-of-type) {
-			margin-bottom: 1.5rem;
+			margin-bottom: 15rem;
 		}
 
 		& .dates,
@@ -195,22 +239,42 @@
 			& p,
 			& p * {
 				margin: 0;
-				font-size: 0.9rem;
+				font-size: 0.75rem;
 				color: var(--neutral-500);
 			}
 		}
 
+		& .dates {
+			position: relative;
+
+			& p {
+				position: absolute;
+				top: 30%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
+		
+		& .tombstone {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			width: 20rem;
+			margin: -3rem auto 0;
+			aspect-ratio: 1 / 1;
+			transform: translateX(-50%);
+		}
+
 		& .metadata {
 			margin-bottom: 0.5rem;
+			text-align: center;
 		}
 
 		& .content {
 			& .title {
+				display: block;
 				margin: 0;
-				text-align: left;
-			}
-
-			& .header a {
+				text-align: center;
 				text-decoration: none;
 			}
 
@@ -254,16 +318,46 @@
 
 		@media (min-width: 768px) {
 			flex-direction: row;
+			align-items: stretch;
 			gap: 1rem;
 			padding: 0.5rem 1rem;
 			
+			&.reverse {
+				flex-direction: row-reverse;
+
+				& .tombstone {
+					right: unset;
+					left: 0;
+				}
+
+				& .content .tags {
+					justify-content: flex-start;
+				}
+			}
+
 			&:not(:last-of-type) {
 				margin-bottom: 2rem;
 			}
 
 			& .dates {
-				min-width: 10rem;
+				display: flex;
+				justify-content: flex-end;
+				max-width: 15rem;
+				min-width: 15rem;
 				padding-top: 0.3rem;
+
+				& p {
+					text-align: center;
+				}
+			}
+
+			& .tombstone {
+				top: 50%;
+				left: unset;
+				right: 0;
+				bottom: unset;
+				margin: 0;
+				transform: translate(0, -50%);
 			}
 
 			& .content {
