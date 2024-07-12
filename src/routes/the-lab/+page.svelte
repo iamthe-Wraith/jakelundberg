@@ -30,19 +30,27 @@
 
 <div class="container">
     <div class="tombstone-wrapper">
-        <Tombstone />
+        <Tombstone>
+            Oct 2023 - Oct 2023
+        </Tombstone>
     </div>
 
     <div class="tombstone-wrapper">
-        <Tombstone variant={2} />
+        <Tombstone variant={2}>
+            Oct 2023 - Oct 2023
+        </Tombstone>
     </div>
 
     <div class="tombstone-wrapper">
-        <Tombstone variant={3} />
+        <Tombstone variant={3}>
+            Oct 2023 - Oct 2023
+        </Tombstone>
     </div>
 
     <div class="tombstone-wrapper">
-        <Tombstone variant={4} />
+        <Tombstone variant={4}>
+            Oct 2023 - Oct 2023
+        </Tombstone>
     </div>
 </div>
 
@@ -54,7 +62,6 @@
         flex-wrap: wrap;
         gap: 1rem;
         width: 100%;
-        height: 50rem;
     }
 
     .tombstone-wrapper {

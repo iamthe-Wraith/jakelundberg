@@ -19,16 +19,16 @@
         },
         light2: {
             position: THREE.Vector3;
+        },
+        text: {
+            rotation: number;
+            top: string;
+            left: string;
         }
     }
 
-    // TODO: add prop so can specify which tombstone to load
-    //   - this will not only require updating the asset name, but
-    //     most likely also updating the position of the camera
-    //     and the lookAt target
-
     export let id = uuidv4();
-    export let variant: 1 | 2 | 3 | 4 = 1;
+    export let variant: number = 1;
 
     const configs: ITombstoneConfig[] = [
         {
@@ -44,12 +44,17 @@
             light2: {
                 position: new THREE.Vector3(0.75, 2.75, 1),
             },
+            text: {
+                rotation: 35,
+                top: '45%',
+                left: '50%',
+            }
         },
         {
             asset: 'tombstone-2', 
             rotation: -11.2,
             camera: {
-                position: new THREE.Vector3(0, 0.95, 0.8),
+                position: new THREE.Vector3(0, 0.95, 0.7),
                 lookAtHeight: 0.55,
             },
             light1: {
@@ -58,6 +63,30 @@
             light2: {
                 position: new THREE.Vector3(-0.5, 4, 1),
             },
+            text: {
+                rotation: -11,
+                top: '50%',
+                left: '47%',
+            }
+        },
+        {
+            asset: 'tombstone-4', 
+            rotation: 17,
+            camera: {
+                position: new THREE.Vector3(0, 1.15, 1),
+                lookAtHeight: 0.7,
+            },
+            light1: {
+                position: new THREE.Vector3(0.75, 3.25, 1.05),
+            },
+            light2: {
+                position: new THREE.Vector3(0.75, 2.75, 1),
+            },
+            text: {
+                rotation: 24,
+                top: '39%',
+                left: '53%',
+            }
         },
         { 
             asset: 'tombstone-3', 
@@ -72,20 +101,11 @@
             light2: {
                 position: new THREE.Vector3(0.75, 2.75, 1),
             },
-        },
-        {
-            asset: 'tombstone-4', 
-            rotation: 17,
-            camera: {
-                position: new THREE.Vector3(0, 1.15, 1.1),
-                lookAtHeight: 0.7,
-            },
-            light1: {
-                position: new THREE.Vector3(0.75, 3.25, 1.05),
-            },
-            light2: {
-                position: new THREE.Vector3(0.75, 2.75, 1),
-            },
+            text: {
+                rotation: -40,
+                top: '40%',
+                left: '53%',
+            }
         },
     ];
 
@@ -98,17 +118,23 @@
 	let light: THREE.PointLight;
 	let light2: THREE.RectAreaLight;
 
+    let mounted = false;
+
     const config = configs[variant - 1];
 
     $: {
         if ($assets.outdoor) {
             if ($assets.outdoor.error) {
                 loadError = $assets.outdoor.error;
-            } else if($assets.outdoor.load?.complete && $assets.outdoor.meshes['tombstone-1'] && !loaded) {
+            } else if($assets.outdoor.load?.complete && $assets.outdoor.meshes['tombstone-1'] && !loaded && mounted) {
                 init();
             }
         }
     }
+
+    onMount(() => {
+        mounted = true;
+    });
 
     const init = () => {
 		const container = document.querySelector(`#tombstone-${id}-container`) as HTMLCanvasElement;
@@ -116,7 +142,7 @@
 		scene = new THREE.Scene();
 		scene.fog = new THREE.Fog(0x030303, 7, 17);
 
-        camera = new THREE.PerspectiveCamera(75, (rect.width / rect.height), 0.1, 1000);
+        camera = new THREE.PerspectiveCamera(70 , (rect.width / rect.height), 0.1, 1000);
         camera.position.set(
             config.camera.position.x,
             config.camera.position.y,
@@ -143,7 +169,7 @@
             config.light1.position.z,
         );
 		light.castShadow = true;
-		light.shadow!.bias = -0.0003;
+		light.shadow!.bias = -0.0004;
 		light.shadow.mapSize.width = 2048;
 		light.shadow.mapSize.height = 2048;
 		light.shadow.camera.near = 0.1;
@@ -194,7 +220,14 @@
     {:else}
         <canvas {id}></canvas>
 
-        {#if !$assets.outdoor.load?.complete}
+        {#if $assets.outdoor.load?.complete}
+            <div
+                class="tombstone-text"
+                style="--tombstone-text-rotation: {config.text.rotation}deg; --tombstone-text-top: {config.text.top}; --tombstone-text-left: {config.text.left};"
+            >
+                <slot></slot>
+            </div>
+        {:else}
             <div class="loading">
                 <p>Loading tombstone...</p>
             </div>
@@ -204,14 +237,32 @@
 
 <style>
     .tombstone-container {
+        container-type: inline-size;
+        container-name: tombstone;
         position: relative;
         width: 100%;
         height: 100%;
+        perspective: 800px;
     }
 
     canvas {
         width: 100%;
         height: 100%;
+    }
+
+    .tombstone-text {
+        --tombstone-text-top: 50%;
+        --tombstone-text-left: 50%;
+        --tombstone-text-rotation: 0;
+
+        position: absolute;
+        top: var(--tombstone-text-top);
+        left: var(--tombstone-text-left);
+        width: 100%;
+        font-size: 0.75rem;
+        color: var(--primary-900);
+        transform: translate3d(-50%, -50%, 0) rotate3d(0, 1, -0.2, var(--tombstone-text-rotation));
+        text-align: center;
     }
 
     .load-error,
@@ -234,5 +285,11 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1;
+    }
+
+    @container tombstone (min-width: 20rem) {
+        .tombstone-text {
+            font-size: 1rem;
+        }
     }
 </style>
