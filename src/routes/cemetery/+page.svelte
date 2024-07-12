@@ -7,6 +7,8 @@
 	dayjs.extend(utc);
 
 	export let data: PageData;
+
+	$: console.log(data.jobs);
 </script>
 
 <div class="cemetery-path">
@@ -85,7 +87,7 @@
 				<div class="content">
 					<div class="header">
 						<a href="{job.url}" class="h5 title">
-							{job.title}&#12539;{job.company}
+							{job.position}&#12539;{job.companyName}
 						</a>
 					</div>
 					
@@ -99,9 +101,9 @@
 						</div>
 					{/if}
 
-					<div class="tags">
-						{#each job.tags as tag}
-							<div class="tag">{tag}</div>
+					<div class="techs">
+						{#each job.tech as tech}
+							<a href="{tech.url}" class="tech">{tech.name}</a>
 						{/each}
 					</div>
 				</div>
@@ -177,8 +179,8 @@
 		border: 5px solid var(--neutral-300);
 		transition: 0.2s ease-in-out;
 
-		&:has(a:hover),
-		&:has(a:focus-visible) {
+		&:has(a:not(.tech):hover),
+		&:has(a:not(.tech):focus-visible) {
 			border: 5px solid var(--neutral-400);
 			background: var(--neutral-200);
 			transform: scale(1.02);
@@ -212,14 +214,14 @@
 				text-decoration: none;
 			}
 
-			& .tags {
+			& .techs {
 				display: flex;
 				justify-content: flex-end;
 				gap: 0.25rem;
 				flex-wrap: wrap;
 				margin-top: 1rem;
 
-				& .tag {
+				& .tech {
 					margin-bottom: 0.25rem;
 					padding: 0 0.5rem;
 					font-size: 0.85rem;
@@ -227,17 +229,24 @@
 					color: var(--neutral-100);
 					font-size: 0.8rem;
 					line-height: 1.3rem;
+					text-decoration: none;
+
+					&:hover,
+					&:focus-visible {
+						background-color: var(--accent2-500);
+						color: var(--neutral-900);
+					}
 				}
 
-				& .tag:nth-child(1n) {
+				& .tech:nth-child(1n) {
 					transform: rotate(-3deg);
 				}
 
-				& .tag:nth-child(2n) {
+				& .tech:nth-child(2n) {
 					transform: rotate(-1deg);
 				}
 
-				& .tag:nth-child(3n) {
+				& .tech:nth-child(3n) {
 					transform: rotate(2deg);
 				}
 			}
@@ -260,7 +269,7 @@
 			& .content {
 				flex-grow: 1;
 
-				& .tags {
+				& .techs {
 					margin: 1rem 0 -1.5rem 0;
 				}
 			}
