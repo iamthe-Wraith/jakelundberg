@@ -14,6 +14,8 @@
 
 	export let data: PageData;
 
+	$: console.log(data);
+
 	onMount(() => {
 		loadAssets()
 			.then();

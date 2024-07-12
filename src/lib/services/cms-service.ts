@@ -1,6 +1,14 @@
 import type { SanityClient } from "@sanity/client";
 import { Logger } from "./logger";
 
+export interface ITech {
+    id: string;
+    name: string;
+    description: string | null;
+    url: string;
+    image: string | null;
+}
+
 export class CMSService {
     private client: SanityClient;
 
