@@ -38,6 +38,7 @@ export class WorkService extends CMSService {
     private renderWorkQuery = () => {
         return `
             *[_type == "job"]
+            | order(startDate desc)
             {
                 "id": _id,
                 companyName,
