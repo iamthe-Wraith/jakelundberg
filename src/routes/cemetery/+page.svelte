@@ -8,6 +8,7 @@
 	import { assets as assetsPath } from '$app/paths';
 	import Bugz from "$lib/components/Bugz.svelte";
 	import Tombstone from "$lib/components/Tombstone.svelte";
+	import TextBlock from "$lib/components/TextBlock.svelte";
 
 	dayjs.extend(utc);
 
@@ -88,63 +89,74 @@
 				<Bugz is="waving" />
 			</div>
 
-			<p>
-				Jake has lots of experience in the industry! He's told me lot's of stories about the different projects he's worked on
-				and the people he's gotten to work with. My favorite is the one about the time he built an automation tool named Igor. Isn't
-				that a silly name for a developer tool?! 
+			<p class="section-intro {data.jobs.error ? 'error' : ''}">
+				{#if data.jobs.error}
+					{data.jobs.error}
+				{:else}
+					Jake has lots of experience building stuff for the web! He's told me lot's of stories about the different projects he's worked on
+					and the people he's gotten to work with. My favorite is the one about the time he built an automation tool named Igor. Isn't
+					that a silly name for a developer tool?!
+				{/if}
 			</p>
 		</div>
 
-		<div class="list-container">
-			{#each data.jobs as job, i (job.id)}
-				<article class="{(i % 2) ? 'reverse' : ''}">
-					<div class="dates">
-						{#if job.endDate}
-							<!-- TODO: add label for accessibility -->
+		{#if data.jobs.data.length && !data.jobs.error}
+			<div class="list-container">
+				{#each data.jobs.data as job, i (job.id)}
+					<article class="{(i % 2) ? 'reverse' : ''}">
+						<div class="dates">
+							{#if job.endDate}
+								<!-- TODO: add label for accessibility -->
 
-							<div class="tombstone job-tombstone">
-								<!--
-									there are 4 variants of the tombstone, so will use the remainder
-									of the index divided by 4 (+1 since the variants are identified
-									with starting index of 1) to determine which variant to use
-								-->
-								<Tombstone variant={i % 4 + 1}>
-									{dayjs(job.startDate).local().format('MMM YYYY')}
-									- 
-									{dayjs(job.endDate).local().format('MMM YYYY')}
-								</Tombstone>
-							</div>
-						{:else}
-							<div>present...</div>
-						{/if}
-					</div>
+								<div class="tombstone job-tombstone">
+									<!--
+										there are 4 variants of the tombstone, so will use the remainder
+										of the index divided by 4 (+1 since the variants are identified
+										with starting index of 1) to determine which variant to use
+									-->
+									<Tombstone variant={i % 4 + 1}>
+										{dayjs(job.startDate).local().format('MMM YYYY')}
+										- 
+										{dayjs(job.endDate).local().format('MMM YYYY')}
+									</Tombstone>
+								</div>
+							{:else}
+								<div>present...</div>
+							{/if}
+						</div>
 
 					<div class="content">
 						<div class="header">
-							<a href="{job.url}" class="h5 title">
-								{job.title}&#12539;{job.company}
+							<a href="{job.url}" target="_blank" class="h5 title">
+								{job.position}&#12539;{job.companyName}
 							</a>
 						</div>
-						
+
 						<div class="metadata">
 							<p>{job.location}</p>
 						</div>
 		
 						{#if job.summary}
 							<div class="summary">
-								<p>{job.summary}</p>
+								<TextBlock text={job.summary} />
 							</div>
 						{/if}
 
-						<div class="tags">
-							{#each job.tags as tag}
-								<div class="tag">{tag}</div>
+						<div class="techs">
+							{#each job.tech as tech}
+								<a
+									href="{tech.url}"
+									target="_blank"
+									class="tech"
+								>
+									{tech.name}
+								</a>
 							{/each}
 						</div>
-					</div>
-				</article>
-			{/each}
-		</div>
+					</article>
+				{/each}
+			</div>
+		{/if}
 	</section>
 </div>
 
@@ -208,6 +220,12 @@
 		}
 	}
 
+	.section-intro {
+		&.error {
+			font-size: unset;
+		}
+	}
+
 	.list-container {
 		padding-top: 14rem;
 
@@ -223,8 +241,8 @@
 		border: 5px solid var(--neutral-300);
 		transition: 0.2s ease-in-out;
 
-		&:has(a:hover),
-		&:has(a:focus-visible) {
+		&:has(a:not(.tech):hover),
+		&:has(a:not(.tech):focus-visible) {
 			border: 5px solid var(--neutral-400);
 			background: var(--neutral-200);
 			transform: scale(1.02);
@@ -278,14 +296,14 @@
 				text-decoration: none;
 			}
 
-			& .tags {
+			& .techs {
 				display: flex;
 				justify-content: flex-end;
 				gap: 0.25rem;
 				flex-wrap: wrap;
 				margin-top: 1rem;
 
-				& .tag {
+				& .tech {
 					margin-bottom: 0.25rem;
 					padding: 0 0.5rem;
 					font-size: 0.85rem;
@@ -293,17 +311,24 @@
 					color: var(--neutral-100);
 					font-size: 0.8rem;
 					line-height: 1.3rem;
+					text-decoration: none;
+
+					&:hover,
+					&:focus-visible {
+						background-color: var(--accent2-500);
+						color: var(--neutral-900);
+					}
 				}
 
-				& .tag:nth-child(1n) {
+				& .tech:nth-child(1n) {
 					transform: rotate(-3deg);
 				}
 
-				& .tag:nth-child(2n) {
+				& .tech:nth-child(2n) {
 					transform: rotate(-1deg);
 				}
 
-				& .tag:nth-child(3n) {
+				& .tech:nth-child(3n) {
 					transform: rotate(2deg);
 				}
 			}
@@ -356,7 +381,7 @@
 			& .content {
 				flex-grow: 1;
 
-				& .tags {
+				& .techs {
 					margin: 1rem 0 -1.5rem 0;
 				}
 			}

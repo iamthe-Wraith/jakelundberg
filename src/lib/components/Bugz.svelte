@@ -10,7 +10,8 @@
         'pointing-left' |
         'doing-nothing' |
         'giggling' |
-        'looking-shy';
+        'looking-shy' |
+        'alarmed'; // good to use with errors
 
     export let id: string = uuidv4();
     export let is: BugzIs = 'waving';
