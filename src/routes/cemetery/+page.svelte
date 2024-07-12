@@ -122,7 +122,7 @@
 
 				<div class="content">
 					<div class="header">
-						<a href="{job.url}" class="h5 title">
+						<a href="{job.url}" target="_blank" class="h5 title">
 							{job.position}&#12539;{job.companyName}
 						</a>
 					</div>
@@ -139,7 +139,13 @@
 
 					<div class="techs">
 						{#each job.tech as tech}
-							<a href="{tech.url}" class="tech">{tech.name}</a>
+							<a
+								href="{tech.url}"
+								target="_blank"
+								class="tech"
+							>
+								{tech.name}
+							</a>
 						{/each}
 					</div>
 				</article>
