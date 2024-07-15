@@ -24,7 +24,7 @@ export class ProjectsService extends CMSService {
     private renderProjectsQuery = () => {
         return `
             *[_type == "project"]
-            | order(rank desc)
+            | order(rank asc)
             {
                 "id": _id,
                 rank,
