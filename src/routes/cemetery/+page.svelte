@@ -72,13 +72,69 @@
 
 		<div class="row">
 			<div class="img-container">
-				<!-- <Bugz is="waving" /> -->
+				<Bugz is="waving" />
 			</div>
 
-			<p>
-				...
+			<p class="section-intro {data.projects.error ? 'error' : ''}">
+				{#if data.projects.error}
+					{data.projects.error}
+				{:else}
+					Jake's always working on something in his lab. Whether it's to learn something new, or it's solving some
+					problem he's encountered, he's always got something in the works. And when he's done with them, he buries them
+					here in the cemetery. I've heard that some of them are still alive and kicking though!
+				{/if}
 			</p>
 		</div>
+
+		{#if data.projects.data.length && !data.projects.error}
+			<div class="list-container">
+				{#each data.projects.data as project, i (project.id)}
+					<article class="{(i % 2) ? 'reverse' : ''}">
+						<div class="dates">
+							<!-- TODO: add label for accessibility -->
+
+							<div class="tombstone job-tombstone">
+								<!--
+									there are 4 variants of the tombstone, so will use the remainder
+									of the index divided by 4 (+1 since the variants are identified
+									with starting index of 1) to determine which variant to use
+								-->
+								<Tombstone variant={i % 4 + 1} />
+							</div>
+						</div>
+
+					<div class="content">
+						<div class="header">
+							<a href="{project.url}" target="_blank" class="h5 title">
+								{project.name}
+							</a>
+						</div>
+
+						<div class="metadata">
+							links...
+						</div>
+		
+						{#if project.description}
+							<div class="description">
+								<TextBlock text={project.description} />
+							</div>
+						{/if}
+
+						<div class="techs">
+							{#each project.tech as tech}
+								<a
+									href="{tech.url}"
+									target="_blank"
+									class="tech"
+								>
+									{tech.name}
+								</a>
+							{/each}
+						</div>
+					</article>
+				{/each}
+			</div>
+		{/if}
 	</section>
 
 	<section class="work">

@@ -1,71 +1,44 @@
-interface IProject {
-    id: number;
-    title: string;
-    url: string;
-    image: string|null,
-    summary: string;
-    links: string[];
-    tags: string[];
-    featured: boolean;
+import type { InputValue } from "@portabletext/svelte";
+import type { SanityClient } from "@sanity/client";
+import { CMSService, type ITech } from "./cms-service";
 
+export interface IProject {
+    id: number;
+    rank: number;
+    name: string;
+    url: string;
+    links: string[];
+    description: InputValue;
+    tech: ITech[];
 }
 
-export class ProjectsService {
-    private projects: IProject[] = [
-        {
-            id: 5,
-            title: 'BuzyBee',
-            url: 'https://buzybee.buzz',
-            image: null,
-            summary: '',
-            links: [],
-            tags: [],
-            featured: true,
-        },
-        {
-            id: 4,
-            title: 'Wraithcode',
-            url: 'https://wraithcode.io',
-            image: null,
-            summary: '',
-            links: [],
-            tags: [],
-            featured: true,
-        },
-        {
-            id: 3,
-            title: 'jakelunderg.dev',
-            url: 'https://jakelunderg.dev',
-            image: null,
-            summary: '',
-            links: [],
-            tags: [],
-            featured: true,
-        },
-        {
-            id: 2,
-            title: 'YumYum Recipes',
-            url: 'https://yumyum.wraithcode.io',
-            image: null,
-            summary: '',
-            links: [],
-            tags: [],
-            featured: true,
-        },
-        {
-            id: 1,
-            title: 'Igor',
-            url: 'https://github.com/iamthe-Wraith/igor',
-            image: null,
-            summary: '',
-            links: [],
-            tags: [],
-            featured: true,
-        }
-    ];
+export class ProjectsService extends CMSService {
+    public constructor(client: SanityClient) {
+        super(client);
+    }
 
-    async getProjects(): Promise<IProject[]> {
-        // TODO: store projects in a database and fetch them here
-        return this.projects
+    public getProjects = async (): Promise<IProject[]> => {
+        return this.fetch(this.renderProjectsQuery());
+    }
+
+    private renderProjectsQuery = () => {
+        return `
+            *[_type == "project"]
+            | order(rank asc)
+            {
+                "id": _id,
+                rank,
+                name,
+                url,
+                links,
+                description,
+                tech[]->{
+                    "id": _id,
+                    name,
+                    url,
+                    image,
+                    description,
+                }
+            }`;
     }
 }

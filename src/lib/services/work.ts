@@ -1,18 +1,10 @@
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
-import { CMSService } from './cms-service';
+import { CMSService, type ITech } from './cms-service';
 import type { SanityClient } from '@sanity/client';
 import type { InputValue } from '@portabletext/svelte';
 
 dayjs.extend(utc);
-
-export interface ITech {
-    id: string;
-    name: string;
-    description: string | null;
-    url: string;
-    image: string | null;
-}
 
 export interface IJob {
     id: number;
