@@ -91,8 +91,6 @@
 				{#each data.projects.data as project, i (project.id)}
 					<article class="{(i % 2) ? 'reverse' : ''}">
 						<div class="dates">
-							<!-- TODO: add label for accessibility -->
-
 							<div class="tombstone job-tombstone">
 								<!--
 									there are 4 variants of the tombstone, so will use the remainder
@@ -103,33 +101,44 @@
 							</div>
 						</div>
 
-					<div class="content">
-						<div class="header">
-							<a href="{project.url}" target="_blank" class="h5 title">
-								{project.name}
-							</a>
-						</div>
-
-						<div class="metadata">
-							links...
-						</div>
-		
-						{#if project.description}
-							<div class="description">
-								<TextBlock text={project.description} />
-							</div>
-						{/if}
-
-						<div class="techs">
-							{#each project.tech as tech}
-								<a
-									href="{tech.url}"
-									target="_blank"
-									class="tech"
-								>
-									{tech.name}
+						<div class="content">
+							<div class="header">
+								<a href="{project.url}" target="_blank" class="h5 title">
+									{project.name}
 								</a>
-							{/each}
+							</div>
+			
+							{#if project.description}
+								<div class="description">
+									<TextBlock text={project.description} />
+								</div>
+							{/if}
+
+							{#if project.links?.length}
+								<div class="links">
+									{#each project.links as link}
+										<a
+											href="{link.url}"
+											target="_blank"
+											class="link"
+										>
+											{link.label}
+										</a>
+									{/each}
+								</div>
+							{/if}
+
+							<div class="techs">
+								{#each project.tech as tech}
+									<a
+										href="{tech.url}"
+										target="_blank"
+										class="tech"
+									>
+										{tech.name}
+									</a>
+								{/each}
+							</div>
 						</div>
 					</article>
 				{/each}
@@ -181,33 +190,34 @@
 							{/if}
 						</div>
 
-					<div class="content">
-						<div class="header">
-							<a href="{job.url}" target="_blank" class="h5 title">
-								{job.position}&#12539;{job.companyName}
-							</a>
-						</div>
-
-						<div class="metadata">
-							<p>{job.location}</p>
-						</div>
-		
-						{#if job.summary}
-							<div class="summary">
-								<TextBlock text={job.summary} />
-							</div>
-						{/if}
-
-						<div class="techs">
-							{#each job.tech as tech}
-								<a
-									href="{tech.url}"
-									target="_blank"
-									class="tech"
-								>
-									{tech.name}
+						<div class="content">
+							<div class="header">
+								<a href="{job.url}" target="_blank" class="h5 title">
+									{job.position}&#12539;{job.companyName}
 								</a>
-							{/each}
+							</div>
+	
+							<div class="metadata">
+								<p>{job.location}</p>
+							</div>
+			
+							{#if job.summary}
+								<div class="summary">
+									<TextBlock text={job.summary} />
+								</div>
+							{/if}
+	
+							<div class="techs">
+								{#each job.tech as tech}
+									<a
+										href="{tech.url}"
+										target="_blank"
+										class="tech"
+									>
+										{tech.name}
+									</a>
+								{/each}
+							</div>
 						</div>
 					</article>
 				{/each}
@@ -315,6 +325,16 @@
 				margin: 0;
 				font-size: 0.75rem;
 				color: var(--neutral-500);
+			}
+		}
+
+		& .links {
+			display: flex;
+			justify-content: center;
+			gap: 1rem;
+
+			& a {
+				color: var(--accent1-500);
 			}
 		}
 
