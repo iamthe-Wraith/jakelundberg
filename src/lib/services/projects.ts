@@ -2,12 +2,17 @@ import type { InputValue } from "@portabletext/svelte";
 import type { SanityClient } from "@sanity/client";
 import { CMSService, type ITech } from "./cms-service";
 
+export interface IProjectLink {
+    label: string;
+    url: string;
+}
+
 export interface IProject {
     id: number;
     rank: number;
     name: string;
     url: string;
-    links: string[];
+    links: IProjectLink[];
     description: InputValue;
     tech: ITech[];
 }
@@ -30,7 +35,10 @@ export class ProjectsService extends CMSService {
                 rank,
                 name,
                 url,
-                links,
+                links[] {
+                    label,
+                    url,
+                },
                 description,
                 tech[]->{
                     "id": _id,
