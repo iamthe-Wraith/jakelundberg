@@ -55,7 +55,7 @@
 				</p>
 
 				<p>
-					This is where Jake likes to bury his projects and work stuff. Feel free to take a look around,
+					This is where Jake used to bury his projects and work stuff. Feel free to take a look around,
 					but don't wander too far...I've heard strange sounds coming from here at night. And after I heard
 					the rumors of this place, I had to sleep with my nightlight for a month!
 				</p>
@@ -79,8 +79,8 @@
 				{#if data.projects.error}
 					{data.projects.error}
 				{:else}
-					Jake's always working on something in his lab. Whether it's to learn something new, or it's solving some
-					problem he's encountered, he's always got something in the works. And when he's done with them, he buries them
+					Jake was always working on something in his lab. Whether it was to learn something new, or solving some
+					problem he'd encountered, he always had something in the works. And when he was done with them, he buried them
 					here in the cemetery. I've heard that some of them are still alive and kicking though!
 				{/if}
 			</p>
@@ -158,8 +158,8 @@
 				{#if data.jobs.error}
 					{data.jobs.error}
 				{:else}
-					Jake has lots of experience building stuff for the web! He's told me lot's of stories about the different projects he's worked on
-					and the people he's gotten to work with. My favorite is the one about the time he built an automation tool named Igor. Isn't
+					Jake had lots of experience building stuff for the web! He told me lot's of stories about the different projects he worked on
+					and the people he got to work with. My favorite was the one about the time he built an automation tool named Igor. Isn't
 					that a silly name for a developer tool?!
 				{/if}
 			</p>
