@@ -16,6 +16,20 @@
 
 <div class="container">
 	<section class="intro">
+		<button class="item venomized-iron-man">
+			<img
+				src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223720/venom-ironman-funko-200x200_fdrfyw.png"
+				alt="Venomized Iron Man Funko Pop"
+			/>
+		</button>
+
+		<button class="item headless-jack-skellington">
+			<img
+				src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/headless-jack-skelington-funko-200x200_ulie31.png"
+				alt="Headless Jack Skellington from The Nightmare Before Christmas Funko Pop"
+			/>
+		</button>
+
 		<h1>The Study</h1>
 
 		<div class="intro-content row">
@@ -32,10 +46,27 @@
 				<Bugz is="waving" />
 			</div>
 		</div>
+
+		<button class="item hulk">
+			<img
+				src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/hulk-funko-200x200_k9ktsf.png"
+				alt="Hulk Funko Pop"
+			/>
+		</button>
 	</section>
 
+	<!-- <section>
+		<div class="shelf shelf-1">
+			
+		</div>
+	</section> -->
+
 	<section class="bio">
-		<h2>About Jake</h2>
+		<div class="header-container">
+			<h2>
+				About Jake
+			</h2>
+		</div>
 
 		<div class="intro-content row">
 			<div class="img-container">
@@ -74,7 +105,94 @@
 				</p>
 			</div>
 		</div>
+
+		<button class="item iron-man">
+			<img 
+				src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/ironman-funko-200x200_brjy8y.png"
+				alt="Iron Man Funko Pop"
+			/>
+		</button>
 	</section>
+
+	<!-- <section class="shelf shelf-2">
+		<button>
+			<img
+				class="artwork"
+				src="https://res.cloudinary.com/dxpwpno1e/image/upload/c_scale,h_500/v1721223756/ironman-wood-poster_oaaqes.webp"
+				alt="Wooden Iron Man movie poster"
+			/>
+		</button>
+
+		<div>
+			<button>
+				<img
+					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/poo-emoji-stuffed-toy-200x200_hmjrcd.png"
+					alt="Poo emoji stuffed toy"
+				/>
+			</button>
+
+			<button>
+				<img
+					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223722/thing-200x200_ydecso.png"
+					alt="A mold figure of Thing from The Adams Family"
+				/>
+			</button>
+
+			<button>
+				<img
+					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/hulk-buster-lego-200x200_owuqmq.png"
+					alt="Lego Hulkbuster armor"
+				/>
+			</button>
+
+			<button>
+				<img
+					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/dundie-award-200x200_uil2kf.png"
+					alt="Dundie Award from The Office"
+				/>
+			</button>
+		</div>
+	</section>
+
+	<section class="shelf shelf-3">
+		<div>
+			<button>
+				<img
+					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223721/zero-200x200_wtplie.png"
+					alt="Light up figure of Zero from The Nightmare Before Christmas"
+				/>
+			</button>
+
+			<button>
+				<img
+					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223721/pumpkin-king-funko-200x200_tik8yw.png"
+					alt="Jack Skellington from The Nightmare Before Christmas dressed as The Pumpkin King Funko Pop"
+				/>
+			</button>
+
+			<button>
+				<img
+					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/back-to-the-future-doc-funko-200x200_bcym9p.png"
+					alt="Doc Brown from Back to the Future Funko Pop"
+				/>
+			</button>
+
+			<button>
+				<img
+					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/kevin-funko-200x200_srfttr.png"
+					alt="Kevin from The Office dressed up as Captain Dunder Mifflin Funko Pop"
+				/>
+			</button>
+		</div>
+
+		<button>
+			<img
+				class="artwork"
+				src="https://res.cloudinary.com/dxpwpno1e/image/upload/c_scale,h_500/v1721230788/ironman-metal-poster_ns19uy.jpg"
+				alt="Metal poster of Iron Man The Birth of the Power comic book cover"
+			/>
+		</button>
+	</section> -->
 </div>
 
 <style>
@@ -127,20 +245,116 @@
 		position: relative;
 		max-width: 60rem;
 		margin: -7vw auto 0;
-		padding: 2rem 1rem;
 		border-top: 5px solid var(--primary-500);
         background: var(--neutral-200);
         z-index: 1;
 
+		&:not(:last-of-type) {
+			padding: 2rem 1rem 4rem;
+		}
+
+		& .venomized-iron-man {
+			bottom: 100%;
+			left: 0.5rem;
+			width: 100px;
+		}
+
+		& .headless-jack-skellington {
+			right: 3rem;
+			bottom: calc(100% - 8px);
+			width: 100px;
+		}
+
 		& .intro-content {
 			flex-direction: column-reverse;
 		}
+
+		& .hulk {
+			right: 0rem;
+			bottom: -3px;
+			width: 90px;
+		}
 	}
 
+	.bio {
+		position: relative;
+		border-bottom: 5px solid var(--primary-500);
+
+		&:not(:last-of-type) {
+			padding-bottom: 5rem;
+		}
+
+		& .header-container {
+			position: relative;
+		}
+
+		& .iron-man {
+			bottom: -8px;
+			left: 2rem;
+			width: 100px;
+		}
+
+		@media (min-width: 500px) {
+			&:not(:last-of-type) {
+				padding-bottom: 1rem;
+			}	
+		}
+	}
+
+	.item {
+		position: absolute;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+
+		&:hover img,
+		&:focus-within img {
+			filter: drop-shadow(0 0 0.5rem var(--primary-100));
+			transition: 0.35s ease-in-out;
+		}
+
+		& img {
+			display: block;
+			width: 100%;
+			height: auto;
+			filter: drop-shadow(0 0 0 var(--primary-100));
+			transition: 0.3s ease-in-out;
+		}
+	}
+
+	/* .shelf-2,
+	.shelf-3 {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 3rem;
+		padding: 1rem;
+		border: 4px solid var(--neutral-300);
+
+		& .artwork {
+			height: 400px;
+		}
+
+		& > div {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1rem;
+
+			& img {
+				width: 150px;
+				height: 150px;
+			}
+		}
+	} */
+
 	@media (min-width: 500px) {
-        .intro .intro-content {
-            flex-direction: row;
-            gap: 0.5rem;
+		.intro:not(:last-of-type) {
+			padding: 2rem 1rem;
+		}
+		.intro .intro-content {
+			flex-direction: row;
+			gap: 0.5rem;
         }
     }
 </style>
