@@ -3,8 +3,6 @@
 	import Item from "$lib/components/Item.svelte";
 	import MyFavorites from "$lib/components/MyFavorites.svelte";
 	import type { PageData } from "./$types";
-
-	export let data: PageData;
 </script>
 
 <div class="study">
