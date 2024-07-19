@@ -1,0 +1,249 @@
+<script lang="ts">
+	import { onMount } from "svelte";
+    import { FavoriteType, type IFavorite } from "../services/me";
+	import Tabs from "./Tabs.svelte";
+	import type { ITab } from "$lib/types/tabs";
+	import { lazyLoad } from "$lib/actions/lazy-load";
+	import Item from "./Item.svelte";
+
+    export let includeItems = false;
+
+    let category = FavoriteType.Movie as typeof FavoriteType[keyof typeof FavoriteType];
+    let pluralCategory = '';
+    let favorites: IFavorite[] = [];
+    let error = '';
+    let loading = true;
+
+    let tabs: ITab[] = [];
+
+    onMount(() => {
+        reset();
+    });
+
+    const loadFavorites = async () => {
+        loading = true;
+
+        if (!pluralCategory) {
+            error = 'Invalid category: ', category;
+            return;
+        }
+
+        try {
+            const res = await fetch(`/favorites/${pluralCategory}`);
+
+            console.log('res: ', res);
+
+            if (res.ok) {
+                favorites = await res.json();
+            } else {
+                error = await res.text();
+
+                if (!error || error.toLowerCase().includes('<!doctype')) {
+                    throw new Error('unknown error');
+                }
+            }
+        } catch (err) {
+            error = 'It looks like something went wrong. Please try again later.';
+        }
+
+        loading = false;
+    };
+
+    const reset = () => {
+        loading = true;
+        favorites = [];
+        error = '';
+        pluralCategory = '';
+        setTabs();
+        setPluralCategory();
+        loadFavorites();
+    }
+
+    const setCategory = (e: CustomEvent) => {
+        category = e.detail.id;
+        reset();
+    };
+
+    const setPluralCategory = () => {
+        pluralCategory = '';
+
+        if (category === FavoriteType.Movie) {
+            pluralCategory = 'movies';
+        } else if (category === FavoriteType.Show) {
+            pluralCategory = 'shows';
+        } else if (category === FavoriteType.Game) {
+            pluralCategory = 'games';
+        }
+    }
+
+    const setTabs = () => {
+        tabs = [
+            {
+                icon: 'fa-regular fa-camera-movie',
+                id: FavoriteType.Movie,
+                label: 'Movies', 
+                selected: category === FavoriteType.Movie 
+            },
+            { 
+                icon: 'fa-regular fa-tv',
+                id: FavoriteType.Show,
+                label: 'Shows', 
+                selected: category === FavoriteType.Show 
+            },
+            { 
+                icon: 'fa-regular fa-gamepad-modern',
+                id: FavoriteType.Game,
+                label: 'Games', 
+                selected: category === FavoriteType.Game
+            },
+        ]
+    }
+</script>
+
+<div>
+    {#if loading}
+        <div class="center">
+            <p>Loading favorites...</p>
+        </div>
+    {:else}
+        <div class="tabs-container">
+            <Tabs {tabs} on:tab-click={setCategory}/>
+
+            {#if includeItems}
+                <div class="item poo-emoji">
+                    <Item
+                        id="poo-emoji-stuffed-toy"
+                        src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/poo-emoji-stuffed-toy-200x200_hmjrcd.png"
+                        alt="Poo emoji stuffed toy"
+                    />
+                </div>
+            {/if}
+        </div>
+
+        {#if error}
+            <div class="center">
+                <p class="h6">Well this is awkward...</p>
+                <p>{error}</p>
+            </div>
+        {:else}
+            <ol class="favorites">
+                {#each favorites as favorite}
+                    <li class="favorite">
+                        <a href="{favorite.url}" target="_blank">
+                            <div class="rank">
+                                {favorite.rank}
+                            </div>
+
+                            <img
+                                use:lazyLoad={favorite.image || ''}
+                                alt="{favorite.title} movie cover"
+                                aria-labelledby="fav-title"
+                            />
+
+                            <div id="fav-title" class="screen-reader-only">
+                                <p>{favorite.title}</p>
+                            </div>
+                        </a>
+                    </li>
+                {:else}
+                    <div class="center">
+                        <p>No favorites found for category: {category}</p>
+                    </div>
+                {/each}
+            </ol>
+        {/if}
+    {/if}
+</div>
+
+<style>
+    .tabs-container {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .favorites {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        width: 100%;
+        list-style: none;
+    }
+
+    .favorite {
+        & a {
+            position: relative;
+            display: block;
+            width: 8rem;
+            transition: transform 0.15s ease-in-out;
+            transform: scale(1);   
+
+            &:hover,
+            &:focus-visible {
+                transition: transform 0.15s ease-in-out;
+                transform: scale(1.05);
+            }
+        }
+
+        & .rank {
+            position: absolute;
+            top: -0.5rem;
+            left: -0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: var(--primary-500);
+            color: var(--neutral-100);
+            font-family: var(--header-font);
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1rem;
+            z-index: 1;
+        }
+
+        & img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;         
+        }
+
+        @media (min-width: 500px) {
+            & a {
+                width: 12rem;
+            }
+        }
+    }
+
+    .center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 1rem 1rem;
+
+        & p {
+            margin: 0;
+            color: var(--neutral-500);
+        }
+    }
+
+    .item {
+		position: absolute;
+		line-height: 0;
+	}
+
+    .poo-emoji {
+        --item-width: 100px;
+        position: absolute;
+        right: 1rem;
+        bottom: -7px;
+
+        @media (max-width: 500px) {
+            display: none;
+        }
+    }
+</style>

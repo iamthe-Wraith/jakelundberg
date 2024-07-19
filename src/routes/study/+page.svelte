@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Bugz from "$lib/components/Bugz.svelte";
+	import Item from "$lib/components/Item.svelte";
+	import MyFavorites from "$lib/components/MyFavorites.svelte";
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
-
-	$: console.log(data);
 </script>
 
 <div class="study">
@@ -16,19 +16,21 @@
 
 <div class="container">
 	<section class="intro">
-		<button class="item venomized-iron-man">
-			<img
+		<div class="item venomized-iron-man">
+			<Item
+				id="venomized-iron-man"
 				src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223720/venom-ironman-funko-200x200_fdrfyw.png"
 				alt="Venomized Iron Man Funko Pop"
 			/>
-		</button>
+		</div>
 
-		<button class="item headless-jack-skellington">
-			<img
+		<div class="item headless-jack-skellington">
+			<Item
+				id="headless-jack-skellington"
 				src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/headless-jack-skelington-funko-200x200_ulie31.png"
 				alt="Headless Jack Skellington from The Nightmare Before Christmas Funko Pop"
 			/>
-		</button>
+		</div>
 
 		<h1>The Study</h1>
 
@@ -47,19 +49,14 @@
 			</div>
 		</div>
 
-		<button class="item hulk">
-			<img
+		<div class="item hulk">
+			<Item
+				id="hulk"
 				src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/hulk-funko-200x200_k9ktsf.png"
 				alt="Hulk Funko Pop"
 			/>
-		</button>
-	</section>
-
-	<!-- <section>
-		<div class="shelf shelf-1">
-			
 		</div>
-	</section> -->
+	</section>
 
 	<section class="bio">
 		<div class="header-container">
@@ -106,12 +103,21 @@
 			</div>
 		</div>
 
-		<button class="item iron-man">
-			<img 
+		<div class="item iron-man">
+			<Item
+				id="iron-man"
 				src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/ironman-funko-200x200_brjy8y.png"
 				alt="Iron Man Funko Pop"
 			/>
-		</button>
+		</div>
+	</section>
+
+	<section class="favorites">
+		<h2>
+			Favorites
+		</h2>
+
+		<MyFavorites includeItems />
 	</section>
 
 	<!-- <section class="shelf shelf-2">
@@ -254,9 +260,9 @@
 		}
 
 		& .venomized-iron-man {
+			--item-width: 100px;
 			bottom: 100%;
 			left: 0.5rem;
-			width: 100px;
 		}
 
 		& .headless-jack-skellington {
@@ -303,50 +309,8 @@
 
 	.item {
 		position: absolute;
-		background: none;
-		border: none;
-		cursor: pointer;
-		padding: 0;
-
-		&:hover img,
-		&:focus-within img {
-			filter: drop-shadow(0 0 0.5rem var(--primary-100));
-			transition: 0.35s ease-in-out;
-		}
-
-		& img {
-			display: block;
-			width: 100%;
-			height: auto;
-			filter: drop-shadow(0 0 0 var(--primary-100));
-			transition: 0.3s ease-in-out;
-		}
+		line-height: 0;
 	}
-
-	/* .shelf-2,
-	.shelf-3 {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 3rem;
-		padding: 1rem;
-		border: 4px solid var(--neutral-300);
-
-		& .artwork {
-			height: 400px;
-		}
-
-		& > div {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			gap: 1rem;
-
-			& img {
-				width: 150px;
-				height: 150px;
-			}
-		}
-	} */
 
 	@media (min-width: 500px) {
 		.intro:not(:last-of-type) {

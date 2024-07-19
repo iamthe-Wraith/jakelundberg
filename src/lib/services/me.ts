@@ -74,7 +74,18 @@ export class MeService extends CMSService {
     }
 
     private renderFavoriteQuery = (type?: typeof FavoriteType[keyof typeof FavoriteType]) => {
-        return `*[_type == "favorite"${type ? `&& favoriteType == "${type}"` : ''}] { "id": _id, rank, title, url, image, description, favoriteType }`;
+        return `
+            *[_type == "favorite"${type ? `&& favoriteType == "${type}"` : ''}]
+            | order(rank asc)
+            {
+                "id": _id, 
+                rank, 
+                title, 
+                url, 
+                image, 
+                description, 
+                favoriteType
+            }`;
     }
 
     private renderHobbyQuery = () => {
