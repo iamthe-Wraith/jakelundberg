@@ -2,7 +2,6 @@
 	import Bugz from "$lib/components/Bugz.svelte";
 	import Item from "$lib/components/Item.svelte";
 	import MyFavorites from "$lib/components/MyFavorites.svelte";
-	import type { PageData } from "./$types";
 </script>
 
 <div class="study">
