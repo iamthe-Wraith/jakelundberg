@@ -47,18 +47,23 @@
         justify-content: center;
         align-items: center;
         gap: 0.5rem;
-        background-color: transparent;
-        border: none;
-        font-size: 1rem;
         padding: 0.5rem 1rem;
+        font-size: 1rem;
+        background-color: transparent;
         border: 1px solid transparent;
         border-bottom: none;
+        color: var(--neutral-900);
+        transition: 0.25s ease-in-out;
 
         &:not(.selected) {
             cursor: pointer;
 
-            &:hover {
+            &:hover,
+            &:focus-visible,
+            &:hover i,
+            &:focus-visible i {
                 color: var(--primary-500);
+                transition: 0.25s ease-in-out;
             }
         }
 
@@ -83,6 +88,11 @@
             &:after {
                 left: 100%;
             }
+        }
+
+        & i {
+            color: var(--neutral-900);
+            transition: 0.25s ease-in-out;
         }
     }
 

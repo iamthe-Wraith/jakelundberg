@@ -31,8 +31,6 @@
         try {
             const res = await fetch(`/favorites/${pluralCategory}`);
 
-            console.log('res: ', res);
-
             if (res.ok) {
                 favorites = await res.json();
             } else {
@@ -100,30 +98,30 @@
     }
 </script>
 
-<div>
-    {#if loading}
+<div class="favorites-container">
+    <div class="tabs-container">
+        <Tabs {tabs} on:tab-click={setCategory}/>
+
+        {#if includeItems}
+            <div class="item poo-emoji">
+                <Item
+                    id="poo-emoji-stuffed-toy"
+                    src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/poo-emoji-stuffed-toy-200x200_hmjrcd.png"
+                    alt="Poo emoji stuffed toy"
+                />
+            </div>
+        {/if}
+    </div>
+
+    {#if error}
         <div class="center">
-            <p>Loading favorites...</p>
+            <p class="h6">Well this is awkward...</p>
+            <p>{error}</p>
         </div>
     {:else}
-        <div class="tabs-container">
-            <Tabs {tabs} on:tab-click={setCategory}/>
-
-            {#if includeItems}
-                <div class="item poo-emoji">
-                    <Item
-                        id="poo-emoji-stuffed-toy"
-                        src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/poo-emoji-stuffed-toy-200x200_hmjrcd.png"
-                        alt="Poo emoji stuffed toy"
-                    />
-                </div>
-            {/if}
-        </div>
-
-        {#if error}
+        {#if loading}
             <div class="center">
-                <p class="h6">Well this is awkward...</p>
-                <p>{error}</p>
+                <p>Loading favorite {pluralCategory}...</p>
             </div>
         {:else}
             <ol class="favorites">
@@ -156,6 +154,12 @@
 </div>
 
 <style>
+    .favorites-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 550px;
+    }
+
     .tabs-container {
         position: relative;
         margin-bottom: 1rem;
@@ -171,10 +175,15 @@
     }
 
     .favorite {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
         & a {
             position: relative;
-            display: block;
             width: 8rem;
+            height: 100%;
             min-height: 5rem;
             transition: transform 0.15s ease-in-out;
             transform: scale(1);   
@@ -224,6 +233,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        flex-grow: 1;
+        width: 100%;
+        height: 100%;
         padding: 2rem 1rem 1rem;
 
         & p {
