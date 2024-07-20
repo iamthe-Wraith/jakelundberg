@@ -175,6 +175,7 @@
             position: relative;
             display: block;
             width: 8rem;
+            min-height: 5rem;
             transition: transform 0.15s ease-in-out;
             transform: scale(1);   
 
@@ -207,13 +208,13 @@
         & img {
             display: block;
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;         
         }
 
         @media (min-width: 500px) {
             & a {
-                width: 12rem;
+                width: 10rem;
             }
         }
     }
