@@ -7,7 +7,7 @@
 <div class="study">
 	<img
 		src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721129624/study-cropped_w65fnn.png"
-		alt="A old, dusty, cobweb filled study. A large desk sits in the center with a large, leather chair behind it. The walls are lined with bookshelves filled with books and various trinkets. A large window, covered in cobwebs, lets in the moonlight from outside."
+		alt="An old, dusty, cobweb filled study. A large desk sits in the center with a large, leather chair behind it. The walls are lined with bookshelves filled with books and various trinkets. A large window, covered in cobwebs, lets in the moonlight from outside."
 	/>
 </div>
 
