@@ -3,7 +3,6 @@ import { CMSService } from "./cms-service";
 
 export interface IBook {
     id: number;
-    rank: number;
     title: string;
     url: string|undefined;
     image: string|undefined;
@@ -16,7 +15,7 @@ export interface IBook {
 export class LibraryService extends CMSService {
     // TODO: add other resource types like blog posts, videos, etc.
 
-    private bookProjection = `{ "id": _id, rank, title, url, image, favorite, currentlyReading, read, summary }`;
+    private bookProjection = `{ "id": _id, title, url, image, favorite, currentlyReading, read, summary }`;
 
     public constructor(client: SanityClient) {
         super(client);

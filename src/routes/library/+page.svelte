@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Bugz from "$lib/components/Bugz.svelte";
+	import ReadingList from "$lib/components/ReadingList.svelte";
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
@@ -37,7 +38,9 @@
 		</div>
 	</section>
 
-	<section></section>
+	<section>
+		<ReadingList />
+	</section>
 </div>
 
 <style>
