@@ -125,7 +125,7 @@
             </div>
         {:else}
             <ol class="favorites">
-                {#each favorites as favorite}
+                {#each favorites as favorite (favorite.id)}
                     <li class="favorite">
                         <a href="{favorite.url}" target="_blank">
                             <div class="rank">
