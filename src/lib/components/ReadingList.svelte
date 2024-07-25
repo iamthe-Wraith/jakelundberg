@@ -29,7 +29,6 @@
 
             if (res.ok) {
                 books = await res.json();
-                console.log('books', books);
             } else {
                 error = await res.text();
 
