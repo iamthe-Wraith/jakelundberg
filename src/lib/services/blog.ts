@@ -27,7 +27,8 @@ export interface IBlogPost {
     published_timestamp: string;
     reading_time_minutes: number;
     slug: string;
-    tag_list: string[];
+    tags?: string[]; // not always returned by API
+    tag_list: string[]; // is sometimes returned as a string by API
     title: string;
     type_of: string;
     url: string;
@@ -35,7 +36,23 @@ export interface IBlogPost {
 }
 
 export class BlogService {
-    async getPosts(page = 1, perPage = 10): Promise<IBlogPost[]> {
+    public getBugzFavoritePosts = async (): Promise<IBlogPost[]> => {
+        const ids = ['1885514', '1688057', '1639828'];
+        const posts = await Promise.all(ids.map(id => this.getPostById(id)));
+
+        // this endpoint returns this data in a different structure
+        // than other endpoints, so need to map it to the same structure
+        // used by app
+        return posts.map(post => {
+            if (post.tags && Array.isArray(post.tags)) {
+                post.tag_list = post.tags;
+            }
+
+            return post;
+        })
+    }
+
+    public getPosts = async (page = 1, perPage = 10): Promise<IBlogPost[]> => {
         const res = await fetch(`https://dev.to/api/articles/me?page=${page}&per_page=${perPage}`, {
             headers: {
                 'api-key': DEV_TO_API_KEY,
@@ -45,5 +62,16 @@ export class BlogService {
     
         const posts = await res.json();
         return (posts ?? []).filter((post: IBlogPost) => post.type_of === 'article');
+    }
+
+    public getPostById = async (id: string): Promise<IBlogPost> => {
+        const res = await fetch(`https://dev.to/api/articles/${id}`, {
+            headers: {
+                'api-key': DEV_TO_API_KEY,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        return res.json();
     }
 }
