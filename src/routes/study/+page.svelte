@@ -207,17 +207,6 @@
 		margin: 0 auto;
 	}
 
-	section {
-		width: 100%;
-		max-width: 60rem;
-		margin: 0 auto 3rem;
-
-		&:not(:last-of-type) {
-			margin-bottom: 2rem;
-			padding-bottom: 1rem;
-		}
-	}
-
 	.row {
 		display: flex;
 		flex-direction: column;

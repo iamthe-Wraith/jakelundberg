@@ -2,23 +2,22 @@
 	import { lazyLoad } from "$lib/actions/lazy-load";
 	import BlogPost from "$lib/components/BlogPost.svelte";
 	import Bugz from "$lib/components/Bugz.svelte";
+	import EnvironmentImg from "$lib/components/EnvironmentImg.svelte";
+	import Intro from "$lib/components/Intro.svelte";
 	import ReadingList from "$lib/components/ReadingList.svelte";
+	import Section from "$lib/components/Section.svelte";
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
 </script>
 
-<div class="library">
-	<img
-		src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721527490/library-cropped_euc6nx.png"
-		alt="An old library with stone walls lined with bookshelves filled with books and various trinkets. Pale moonlight filters in through the large windows on the far wall."
-	/>
-</div>
+<EnvironmentImg
+	src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721527490/library-cropped_euc6nx.png"
+	alt="An old library with stone walls lined with bookshelves filled with books and various trinkets. Pale moonlight filters in through the large windows on the far wall."
+/>
 
 <div class="container">
-	<section class="intro">
-		<h1>The Library</h1>
-
+	<Intro header="The Library">
 		<div class="intro-content row">
 			<div class="content-container">
 				<p>
@@ -36,10 +35,9 @@
 				<Bugz is="waving" />
 			</div>
 		</div>
-	</section>
+	</Intro>
 
-	<section>
-		
+	<Section>
 		<div class="text-with-img row">
 			<div>
 				<img
@@ -63,9 +61,9 @@
 		<div class="reading-list-container">
 			<ReadingList />
 		</div>
-	</section>
+	</Section>
 
-	<section>
+	<Section>
 		<div class="text-with-img reverse row">
 			<div>
 				<h2>Writing</h2>
@@ -102,50 +100,13 @@
 				{/each}
 			</div>
 		</div>
-	</section>
+	</Section>
 </div>
 
 <style>
-    .library {
-		width: 100%;
-		max-width: 80rem;
-		margin: 0 auto;
-		overflow: hidden;
-
-		& img {
-			width: 100%;
-			height: auto;
-			object-fit: cover;
-		}
-	}
-
     .container {
 		width: 96%;
 		margin: 0 auto;
-	}
-
-	section {
-		position: relative;
-		width: 100%;
-		max-width: 60rem;
-		margin: 0 auto 3rem;
-		padding-top: 5rem;
-
-		&:not(:last-of-type) {
-			margin-bottom: 5rem;
-			padding-bottom: 1rem;
-		}
-
-		&:before {
-			content: ' ';
-			position: absolute;
-			bottom: 100%;
-			left: 50%;
-			width: 70%;
-			height: 1px;
-			background: var(--neutral-300);
-			transform: translateX(-50%);
-		}
 	}
 
 	.row {
@@ -164,22 +125,8 @@
 		}
 	}
 
-	.intro {
-		position: relative;
-		max-width: 60rem;
-		margin: -7vw auto 0;
-		padding-top: 2rem;
-		border-top: 5px solid var(--primary-500);
-        background: var(--neutral-200);
-        z-index: 1;
-
-		&:before {
-			display: none;
-		}
-
-		& .intro-content {
-			flex-direction: column-reverse;
-		}
+	.intro-content {
+		flex-direction: column-reverse;
 	}
 
 	.text-with-img {
@@ -234,11 +181,7 @@
 	}
 
 	@media (min-width: 500px) {
-		.intro:not(:last-of-type) {
-			padding: 2rem 1rem;
-		}
-
-		.intro .intro-content {
+		.intro-content {
 			flex-direction: row;
 			gap: 0.5rem;
         }
