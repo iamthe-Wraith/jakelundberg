@@ -2,19 +2,18 @@
 	import { lazyLoad } from "$lib/actions/lazy-load";
 import Bugz from "$lib/components/Bugz.svelte";
 	import Button from "$lib/components/Button.svelte";
+	import EnvironmentImg from "$lib/components/EnvironmentImg.svelte";
+	import Intro from "$lib/components/Intro.svelte";
+	import Section from "$lib/components/Section.svelte";
 </script>
 
-<div class="laboratory">
-	<img
-		src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721957694/laboratory-3_pqfr05.png"
-		alt="An old laboratory filled with all kinds of scientific equipment, large pipes, and various machines and gadgets."
-	/>
-</div>
+<EnvironmentImg
+	src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721957694/laboratory-3_pqfr05.png"
+	alt="An old laboratory filled with all kinds of scientific equipment, large pipes, and various machines and gadgets."
+/>
 
 <div class="container">
-	<section class="intro">
-		<h1>The Laboratory</h1>
-
+	<Intro header="The Laboratory">
 		<div class="intro-content row">
 			<div>
 				<p>
@@ -44,9 +43,9 @@ import Bugz from "$lib/components/Bugz.svelte";
 				<Bugz is="waving" />
 			</div>
 		</div>
-	</section>
+	</Intro>
 		
-	<section>
+	<Section>
 		<div class="charlie row">
 			<div>
 				<img
@@ -74,50 +73,13 @@ import Bugz from "$lib/components/Bugz.svelte";
 				</div>
 			</div>
 		</div>
-	</section>
+	</Section>
 </div>
 
 <style>
-	.laboratory {
-		width: 100%;
-		max-width: 80rem;
-		margin: 0 auto;
-		overflow: hidden;
-
-		& img {
-			width: 100%;
-			height: auto;
-			object-fit: cover;
-		}
-	}
-
     .container {
 		width: 96%;
 		margin: 0 auto;
-	}
-
-	section {
-		position: relative;
-		width: 100%;
-		max-width: 60rem;
-		margin: 0 auto 3rem;
-		padding-top: 5rem;
-
-		&:not(:last-of-type) {
-			margin-bottom: 5rem;
-			padding-bottom: 1rem;
-		}
-
-		&:before {
-			content: ' ';
-			position: absolute;
-			bottom: 100%;
-			left: 50%;
-			width: 70%;
-			height: 1px;
-			background: var(--neutral-300);
-			transform: translateX(-50%);
-		}
 	}
 
 	.row {
@@ -136,22 +98,8 @@ import Bugz from "$lib/components/Bugz.svelte";
 		}
 	}
 
-	.intro {
-		position: relative;
-		max-width: 60rem;
-		margin: -7vw auto 0;
-		padding-top: 2rem;
-		border-top: 5px solid var(--primary-500);
-        background: var(--neutral-200);
-        z-index: 1;
-
-		&:before {
-			display: none;
-		}
-
-		& .intro-content {
-			flex-direction: column-reverse;
-		}
+	.intro-content {
+		flex-direction: column-reverse;
 	}
 
 	.charlie {
@@ -164,11 +112,7 @@ import Bugz from "$lib/components/Bugz.svelte";
 	}
 
 	@media (min-width: 500px) {
-		.intro:not(:last-of-type) {
-			padding: 2rem 1rem;
-		}
-
-		.intro .intro-content {
+		.intro-content {
 			flex-direction: row;
 			gap: 0.5rem;
         }
