@@ -1,18 +1,19 @@
 <script lang="ts">
 	import Bugz from "$lib/components/Bugz.svelte";
+	import EnvironmentImg from "$lib/components/EnvironmentImg.svelte";
+	import Intro from "$lib/components/Intro.svelte";
 	import Item from "$lib/components/Item.svelte";
 	import MyFavorites from "$lib/components/MyFavorites.svelte";
+	import Section from "$lib/components/Section.svelte";
 </script>
 
-<div class="study">
-	<img
-		src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721129624/study-cropped_w65fnn.png"
-		alt="An old, dusty, cobweb filled study. A large desk sits in the center with a large, leather chair behind it. The walls are lined with bookshelves filled with books and various trinkets. A large window, covered in cobwebs, lets in the moonlight from outside."
-	/>
-</div>
+<EnvironmentImg
+	src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721129624/study-cropped_w65fnn.png"
+	alt="An old, dusty, cobweb filled study. A large desk sits in the center with a large, leather chair behind it. The walls are lined with bookshelves filled with books and various trinkets. A large window, covered in cobwebs, lets in the moonlight from outside."
+/>
 
 <div class="container">
-	<section class="intro">
+	<Intro header="The Study">
 		<div class="item venomized-iron-man">
 			<Item
 				id="venomized-iron-man"
@@ -28,8 +29,6 @@
 				alt="Headless Jack Skellington from The Nightmare Before Christmas Funko Pop"
 			/>
 		</div>
-
-		<h1>The Study</h1>
 
 		<div class="intro-content row">
 			<div>
@@ -53,69 +52,73 @@
 				alt="Hulk Funko Pop"
 			/>
 		</div>
-	</section>
+	</Intro>
 
-	<section class="bio">
-		<div class="header-container">
+	<Section>
+		<div class="bio">
+			<div class="header-container">
+				<h2>
+					About Jake
+				</h2>
+			</div>
+	
+			<div class="intro-content row">
+				<div class="img-container">
+					<Bugz is="waving" />
+				</div>
+	
+				<div>
+					<p>
+						Other than his family, I probably knew Jake the best, so let me share a little about him while you look around.
+					</p>
+	
+					<p>
+						Jake grew up in a really small farming town in Washington State. To give you an idea of how small, his graduating
+						class only had 26 people in it! Here he started working when he was 11 years old, stacking 50 lbs. bags of onions on
+						pallets in a local packing plant. 
+					</p>
+	
+					<p>
+						After highschool he joined the U.S. Army and served for 4 years stationed in Fort Bragg, North Carolina. It was
+						during this time he first discovered his love for software development. After the Army he went to work for a big
+						bank doing collections for their automobile finance department. While working there, he went to school and got his
+						Bachelor's degree in Software Engineering. When he graduated, he dove into the software development world and has
+						been working in it ever since.
+					</p>
+	
+					<p>
+						He once told me that he hoped everyone could find the same love and passion in their lives that he found in software
+						development. He said that it was the one thing that he could do for hours on end and never get bored. You could always
+						find him working on some project or another, and he was always excited to share what he was working on with anyone who
+						would listen...usually me!
+					</p>
+	
+					<p>
+						Before he went missing he lived in Raleigh, NC with his wife, son, and their 3 dogs. He was a big fan of grilling and smoking meats,
+						playing games with his son, and watching bad horror movies with his wife.
+					</p>
+				</div>
+			</div>
+	
+			<div class="item iron-man">
+				<Item
+					id="iron-man"
+					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/ironman-funko-200x200_brjy8y.png"
+					alt="Iron Man Funko Pop"
+				/>
+			</div>
+		</div>
+	</Section>	
+
+	<Section>
+		<div class="favorites">
 			<h2>
-				About Jake
+				Favorites
 			</h2>
+	
+			<MyFavorites includeItems />
 		</div>
-
-		<div class="intro-content row">
-			<div class="img-container">
-				<Bugz is="waving" />
-			</div>
-
-			<div>
-				<p>
-					Other than his family, I probably knew Jake the best, so let me share a little about him while you look around.
-				</p>
-
-				<p>
-					Jake grew up in a really small farming town in Washington State. To give you an idea of how small, his graduating
-					class only had 26 people in it! Here he started working when he was 11 years old, stacking 50 lbs. bags of onions on
-					pallets in a local packing plant. 
-				</p>
-
-				<p>
-					After highschool he joined the U.S. Army and served for 4 years stationed in Fort Bragg, North Carolina. It was
-					during this time he first discovered his love for software development. After the Army he went to work for a big
-					bank doing collections for their automobile finance department. While working there, he went to school and got his
-					Bachelor's degree in Software Engineering. When he graduated, he dove into the software development world and has
-					been working in it ever since.
-				</p>
-
-				<p>
-					He once told me that he hoped everyone could find the same love and passion in their lives that he found in software
-					development. He said that it was the one thing that he could do for hours on end and never get bored. You could always
-					find him working on some project or another, and he was always excited to share what he was working on with anyone who
-					would listen...usually me!
-				</p>
-
-				<p>
-					Before he went missing he lived in Raleigh, NC with his wife, son, and their 3 dogs. He was a big fan of grilling and smoking meats,
-					playing games with his son, and watching bad horror movies with his wife.
-				</p>
-			</div>
-		</div>
-
-		<div class="item iron-man">
-			<Item
-				id="iron-man"
-				src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/ironman-funko-200x200_brjy8y.png"
-				alt="Iron Man Funko Pop"
-			/>
-		</div>
-	</section>
-
-	<section class="favorites">
-		<h2>
-			Favorites
-		</h2>
-
-		<MyFavorites includeItems />
-	</section>
+	</Section>
 
 	<!-- <section class="shelf shelf-2">
 		<button>
@@ -199,33 +202,9 @@
 </div>
 
 <style>
-    .study {
-		width: 100%;
-		max-width: 80rem;
-		margin: 0 auto;
-		overflow: hidden;
-
-		& img {
-			width: 100%;
-			height: auto;
-			object-fit: cover;
-		}
-	}
-
     .container {
 		width: 96%;
 		margin: 0 auto;
-	}
-
-	section {
-		width: 100%;
-		max-width: 60rem;
-		margin: 0 auto 3rem;
-
-		&:not(:last-of-type) {
-			margin-bottom: 2rem;
-			padding-bottom: 1rem;
-		}
 	}
 
 	.row {
@@ -244,39 +223,26 @@
 		}
 	}
 
-	.intro {
-		position: relative;
-		max-width: 60rem;
-		margin: -7vw auto 0;
-		border-top: 5px solid var(--primary-500);
-        background: var(--neutral-200);
-        z-index: 1;
+	.venomized-iron-man {
+		--item-width: 100px;
+		bottom: 100%;
+		left: 0.5rem;
+	}
 
-		&:not(:last-of-type) {
-			padding: 2rem 1rem 4rem;
-		}
+	.headless-jack-skellington {
+		right: 3rem;
+		bottom: calc(100% - 8px);
+		width: 100px;
+	}
 
-		& .venomized-iron-man {
-			--item-width: 100px;
-			bottom: 100%;
-			left: 0.5rem;
-		}
+	.intro-content {
+		flex-direction: column-reverse;
+	}
 
-		& .headless-jack-skellington {
-			right: 3rem;
-			bottom: calc(100% - 8px);
-			width: 100px;
-		}
-
-		& .intro-content {
-			flex-direction: column-reverse;
-		}
-
-		& .hulk {
-			right: 0rem;
-			bottom: -3px;
-			width: 90px;
-		}
+	.hulk {
+		right: 0rem;
+		bottom: -3px;
+		width: 90px;
 	}
 
 	.bio {
@@ -310,10 +276,7 @@
 	}
 
 	@media (min-width: 500px) {
-		.intro:not(:last-of-type) {
-			padding: 2rem 1rem;
-		}
-		.intro .intro-content {
+		.intro-content {
 			flex-direction: row;
 			gap: 0.5rem;
         }
