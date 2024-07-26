@@ -5,12 +5,13 @@
 
 <div class="environment-img">
     <img src="{src}" alt="{alt}" />
-</div>
+</div>  
 
 <style>
     .environment-img {
         width: 100%;
         max-width: 80rem;
+        min-height: 10rem;
         margin: 0 auto;
         overflow: hidden;
 
