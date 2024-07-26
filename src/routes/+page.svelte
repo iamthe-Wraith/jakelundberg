@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { IBlogPost } from "$lib/services/blog";
-	import dayjs from "dayjs";
 	import type { PageData } from "./$types";
 	import Bugz from "$lib/components/Bugz.svelte";
 	import type { IBook } from "$lib/services/library";
 	import BlogPost from "$lib/components/BlogPost.svelte";
+	import EnvironmentImg from "$lib/components/EnvironmentImg.svelte";
+	import Intro from "$lib/components/Intro.svelte";
+	import Section from "$lib/components/Section.svelte";
 
     export let data: PageData;
 
@@ -15,25 +17,15 @@
     $: blogPosts = data?.blog?.posts ?? [];
 </script>
 
+<EnvironmentImg
+    src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721872334/manor-gate_vfs5th.png"
+    alt="An iron gate standing slightly ajar between 2 large stone pillars. A stone path leads up to the gate
+    and beyond into a dark forest. Vines and most climb up the stone pollers and gate, giving the impression
+    that the gate has been abandoned for some time."
+/>
+
 <div class="container">
-    <div class="manor-gate">
-        <img
-            class="manor-gate-mobile"
-            src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1718378575/manor-gate-mobile_fbhyjq.png"
-            alt=""
-        />
-
-        <div class="manor-gate-desktop">
-            <img
-                src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1718378575/manor-gate-desktop_vsv0fr.png"
-                alt=""
-            />
-        </div>
-    </div>
-
-    <section class="intro">
-        <p class="h1">Welcome to Wraith Manor</p>
-
+    <Intro header="Welcome to Wraith Manor">
         <div class="intro-content">
             <div class="img-container">
                 <Bugz />
@@ -59,101 +51,54 @@
                 </p>
             </div>
         </div>
-    </section>
+    </Intro>
 
     {#if currentlyReading.length > 0}
-        <section class="currently-reading">
-            <h2>Currently Reading</h2>
+        <Section>
+            <div class="currently-reading">
+                <h2>Currently Reading</h2>
 
-            <div class="currently-reading-list">
-                {#each currentlyReading as book}
-                    <a href="{book.url}" target="_blank" class="book">
-                        <img src={book.image} alt={book.title} />
-                    </a>
-                {/each}
+                <div class="currently-reading-list">
+                    {#each currentlyReading as book}
+                        <a href="{book.url}" target="_blank" class="book">
+                            <img src={book.image} alt={book.title} />
+                        </a>
+                    {/each}
+                </div>
             </div>
-        </section>
+        </Section>
     {/if}
 
     {#if blogPosts.length > 0}
-        <section class="blog-posts-container">
-            <h2>Latest Blog Posts</h2>
-
-            <div class="blog-posts">
-                {#each blogPosts as post}
-                    <BlogPost {post} />
-                {/each}
+        <Section style="--section-max-width: 80rem">
+            <div class="blog-posts-container">
+                <h2>Latest Blog Posts</h2>
+    
+                <div class="blog-posts">
+                    {#each blogPosts as post}
+                        <BlogPost {post} />
+                    {/each}
+                </div>
             </div>
-        </section>
+        </Section>
     {/if}
 </div>
 
 <style>
-    section {
-        width: 94%;
-        margin: 0 auto 3rem;
-    }
-
-    .manor-gate {
-        max-width: 80rem;
+    .intro-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 50rem;
         margin: 0 auto;
 
-        & .manor-gate-mobile {
-            display: none;
+        & p:last-child {
+            margin-bottom: 0;
         }
 
-        & .manor-gate-desktop {
+        & .img-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            width: 100%;
-            /* min-height: 20rem; */
-
-            & img {
-                width: 100%;
-                height: 100%;
-                min-height: 20rem;
-                object-fit: cover;
-            }
-        }
-    }
-
-    .intro {
-        position: relative;
-        max-width: 60rem;
-        margin: -7vw auto 3rem;
-        padding: 2rem 1rem;
-        border-top: 5px solid var(--primary-500);
-        background: var(--neutral-200);
-        z-index: 1;
-
-        & .h1 {
-            position: relative;
-            z-index: 2;
-        }
-
-        & .intro-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            max-width: 50rem;
-            margin: 0 auto;
-
-            & p:last-child {
-                margin-bottom: 0;
-            }
-
-            & .img-container {
-                display: flex;
-                justify-content: center;
-            }
-        }
-
-        & .greeting {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            text-align: center;
         }
 
         & p {
@@ -204,10 +149,8 @@
     }
 
     .blog-posts-container {
-        width: 94%;
-        max-width: 80rem;
-        margin: 0 auto;
-        padding: 2rem 0;
+        width: 100%;
+        padding: 0 1rem;
 
         & .blog-posts {
             display: grid;
@@ -218,7 +161,7 @@
     }
 
     @media (min-width: 500px) {
-        .intro .intro-content {
+        .intro-content {
             flex-direction: row;
             gap: 0.5rem;
         }
