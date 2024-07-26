@@ -30,9 +30,9 @@
             iconStyles: 'transform: rotate(-6deg);'
         },
         {
-            text: 'The Lab',
+            text: 'Laboratory',
             subText: 'A place to experiment',
-            route: 'https://wraithcode.io/the-lab',
+            route: '/laboratory',
             icon: 'fa-regular fa-flask-round-poison',
             iconStyles: 'transform: rotate(8deg);'
         },

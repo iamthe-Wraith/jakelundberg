@@ -6,8 +6,6 @@
 	import type { PageData } from "./$types";
 
 	export let data: PageData;
-
-	$: console.log(data);
 </script>
 
 <div class="library">
@@ -68,7 +66,7 @@
 	</section>
 
 	<section>
-		<div class="text-with-img row">
+		<div class="text-with-img reverse row">
 			<div>
 				<h2>Writing</h2>
 
@@ -170,6 +168,7 @@
 		position: relative;
 		max-width: 60rem;
 		margin: -7vw auto 0;
+		padding-top: 2rem;
 		border-top: 5px solid var(--primary-500);
         background: var(--neutral-200);
         z-index: 1;
@@ -177,23 +176,37 @@
 		&:before {
 			display: none;
 		}
-	}
 
-	& .intro-content {
-		flex-direction: column-reverse;
+		& .intro-content {
+			flex-direction: column-reverse;
+		}
 	}
 
 	.text-with-img {
 		gap: 2rem;
 
-		& .reading-nook {
-			display: block;
-			width: 18rem;
+		&.reverse {
+			flex-direction: column-reverse;
 		}
 
+		& .reading-nook,
 		& .writing-materials {
 			display: block;
-			width: 22rem;
+			width: 100%;
+		}
+
+		@media (min-width: 500px) {
+			&.reverse {
+				flex-direction: row;
+			}
+
+			& .reading-nook {
+				width: 18rem;
+			}
+
+			& .writing-materials {
+				width: 22rem;
+			}
 		}
 	}
 
