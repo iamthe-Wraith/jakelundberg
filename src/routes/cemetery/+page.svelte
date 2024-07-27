@@ -9,6 +9,9 @@
 	import Bugz from "$lib/components/Bugz.svelte";
 	import Tombstone from "$lib/components/Tombstone.svelte";
 	import TextBlock from "$lib/components/TextBlock.svelte";
+	import EnvironmentImg from "$lib/components/EnvironmentImg.svelte";
+	import Intro from "$lib/components/Intro.svelte";
+	import Section from "$lib/components/Section.svelte";
 
 	dayjs.extend(utc);
 
@@ -37,193 +40,193 @@
 	}
 </script>
 
-<div class="cemetery-path">
-	<img
-		src="https://res.cloudinary.com/dxpwpno1e/image/upload/c_scale,w_1024/v1720401233/cemetery_sgsaei.png"
-		alt="A spooky cemetery in the mountains at night with crooked tombstones and creepy trees."
-	/>
-</div>
+<EnvironmentImg
+	src="https://res.cloudinary.com/dxpwpno1e/image/upload/c_scale,w_1024/v1720401233/cemetery_sgsaei.png"
+	alt="A spooky cemetery in the mountains at night with crooked tombstones and creepy trees."
+/>
 
 <div class="container">
-	<section class="intro">
-		<h1>Cemetery</h1>
-
+	<Intro header="Cemetery">
 		<div class="intro-content row">
 			<div>
 				<p>
 					Ah, I see you found the cemetery. Kinda spooky isn't it?
 				</p>
-
+	
 				<p>
 					This is where Jake used to bury his projects and work stuff. Feel free to take a look around,
 					but don't wander too far...I've heard strange sounds coming from here at night. And after I heard
 					the rumors of this place, I had to sleep with my nightlight for a month!
 				</p>
 			</div>
-
+	
 			<div class="img-container">
 				<Bugz is="waving" />
 			</div>
 		</div>
-	</section>
+	</Intro>
 
-	<section class="projects">
-		<h2>Projects</h2>
-
-		<div class="row">
-			<div class="img-container">
-				<Bugz is="waving" />
+	<Section>
+		<div class="projects">
+			<h2>Projects</h2>
+	
+			<div class="row">
+				<div class="img-container">
+					<Bugz is="waving" />
+				</div>
+	
+				<p class="section-intro {data.projects.error ? 'error' : ''}">
+					{#if data.projects.error}
+						{data.projects.error}
+					{:else}
+						Jake was always working on something in his lab. Whether it was to learn something new, or solving some
+						problem he'd encountered, he always had something in the works. And when he was done with them, he buried them
+						here in the cemetery. I've heard that some of them are still alive and kicking though!
+					{/if}
+				</p>
 			</div>
-
-			<p class="section-intro {data.projects.error ? 'error' : ''}">
-				{#if data.projects.error}
-					{data.projects.error}
-				{:else}
-					Jake was always working on something in his lab. Whether it was to learn something new, or solving some
-					problem he'd encountered, he always had something in the works. And when he was done with them, he buried them
-					here in the cemetery. I've heard that some of them are still alive and kicking though!
-				{/if}
-			</p>
-		</div>
-
-		{#if data.projects.data.length && !data.projects.error}
-			<div class="list-container">
-				{#each data.projects.data as project, i (project.id)}
-					<article class="{(i % 2) ? 'reverse' : ''}">
-						<div class="dates">
-							<div class="tombstone job-tombstone">
-								<!--
-									there are 4 variants of the tombstone, so will use the remainder
-									of the index divided by 4 (+1 since the variants are identified
-									with starting index of 1) to determine which variant to use
-								-->
-								<Tombstone variant={i % 4 + 1} />
-							</div>
-						</div>
-
-						<div class="content">
-							<div class="header">
-								<a href="{project.url}" target="_blank" class="h5 title">
-									{project.name}
-								</a>
-							</div>
-			
-							{#if project.description}
-								<div class="description">
-									<TextBlock text={project.description} />
-								</div>
-							{/if}
-
-							{#if project.links?.length}
-								<div class="links">
-									{#each project.links as link}
-										<a
-											href="{link.url}"
-											target="_blank"
-											class="link"
-										>
-											{link.label}
-										</a>
-									{/each}
-								</div>
-							{/if}
-
-							<div class="techs">
-								{#each project.tech as tech}
-									<a
-										href="{tech.url}"
-										target="_blank"
-										class="tech"
-									>
-										{tech.name}
-									</a>
-								{/each}
-							</div>
-						</div>
-					</article>
-				{/each}
-			</div>
-		{/if}
-	</section>
-
-	<section class="work">
-		<h2>Work Stuff</h2>
-
-		<div class="row">
-			<div class="img-container">
-				<Bugz is="waving" />
-			</div>
-
-			<p class="section-intro {data.jobs.error ? 'error' : ''}">
-				{#if data.jobs.error}
-					{data.jobs.error}
-				{:else}
-					Jake had lots of experience building stuff for the web! He told me lot's of stories about the different projects he worked on
-					and the people he got to work with. My favorite was the one about the time he built an automation tool named Igor. Isn't
-					that a silly name for a developer tool?!
-				{/if}
-			</p>
-		</div>
-
-		{#if data.jobs.data.length && !data.jobs.error}
-			<div class="list-container">
-				{#each data.jobs.data as job, i (job.id)}
-					<article class="{(i % 2) ? 'reverse' : ''}">
-						<div class="dates">
-							{#if job.endDate}
-								<!-- TODO: add label for accessibility -->
-
+	
+			{#if data.projects.data.length && !data.projects.error}
+				<div class="list-container">
+					{#each data.projects.data as project, i (project.id)}
+						<article class="{(i % 2) ? 'reverse' : ''}">
+							<div class="dates">
 								<div class="tombstone job-tombstone">
 									<!--
 										there are 4 variants of the tombstone, so will use the remainder
 										of the index divided by 4 (+1 since the variants are identified
 										with starting index of 1) to determine which variant to use
 									-->
-									<Tombstone variant={i % 4 + 1}>
-										{dayjs(job.startDate).local().format('MMM YYYY')}
-										- 
-										{dayjs(job.endDate).local().format('MMM YYYY')}
-									</Tombstone>
+									<Tombstone variant={i % 4 + 1} />
 								</div>
-							{:else}
-								<div>present...</div>
-							{/if}
-						</div>
-
-						<div class="content">
-							<div class="header">
-								<a href="{job.url}" target="_blank" class="h5 title">
-									{job.position}&#12539;{job.companyName}
-								</a>
 							</div>
 	
-							<div class="metadata">
-								<p>{job.location}</p>
-							</div>
-			
-							{#if job.summary}
-								<div class="summary">
-									<TextBlock text={job.summary} />
-								</div>
-							{/if}
-	
-							<div class="techs">
-								{#each job.tech as tech}
-									<a
-										href="{tech.url}"
-										target="_blank"
-										class="tech"
-									>
-										{tech.name}
+							<div class="content">
+								<div class="header">
+									<a href="{project.url}" target="_blank" class="h5 title">
+										{project.name}
 									</a>
-								{/each}
+								</div>
+				
+								{#if project.description}
+									<div class="description">
+										<TextBlock text={project.description} />
+									</div>
+								{/if}
+	
+								{#if project.links?.length}
+									<div class="links">
+										{#each project.links as link}
+											<a
+												href="{link.url}"
+												target="_blank"
+												class="link"
+											>
+												{link.label}
+											</a>
+										{/each}
+									</div>
+								{/if}
+	
+								<div class="techs">
+									{#each project.tech as tech}
+										<a
+											href="{tech.url}"
+											target="_blank"
+											class="tech"
+										>
+											{tech.name}
+										</a>
+									{/each}
+								</div>
 							</div>
-						</div>
-					</article>
-				{/each}
+						</article>
+					{/each}
+				</div>
+			{/if}
+		</div>
+	</Section>
+
+	<Section>
+		<div class="work">
+			<h2>Work Stuff</h2>
+	
+			<div class="row">
+				<div class="img-container">
+					<Bugz is="waving" />
+				</div>
+	
+				<p class="section-intro {data.jobs.error ? 'error' : ''}">
+					{#if data.jobs.error}
+						{data.jobs.error}
+					{:else}
+						Jake had lots of experience building stuff for the web! He told me lot's of stories about the different projects he worked on
+						and the people he got to work with. My favorite was the one about the time he built an automation tool named Igor. Isn't
+						that a silly name for a developer tool?!
+					{/if}
+				</p>
 			</div>
-		{/if}
-	</section>
+	
+			{#if data.jobs.data.length && !data.jobs.error}
+				<div class="list-container">
+					{#each data.jobs.data as job, i (job.id)}
+						<article class="{(i % 2) ? 'reverse' : ''}">
+							<div class="dates">
+								{#if job.endDate}
+									<!-- TODO: add label for accessibility -->
+	
+									<div class="tombstone job-tombstone">
+										<!--
+											there are 4 variants of the tombstone, so will use the remainder
+											of the index divided by 4 (+1 since the variants are identified
+											with starting index of 1) to determine which variant to use
+										-->
+										<Tombstone variant={i % 4 + 1}>
+											{dayjs(job.startDate).local().format('MMM YYYY')}
+											- 
+											{dayjs(job.endDate).local().format('MMM YYYY')}
+										</Tombstone>
+									</div>
+								{:else}
+									<div>present...</div>
+								{/if}
+							</div>
+	
+							<div class="content">
+								<div class="header">
+									<a href="{job.url}" target="_blank" class="h5 title">
+										{job.position}&#12539;{job.companyName}
+									</a>
+								</div>
+		
+								<div class="metadata">
+									<p>{job.location}</p>
+								</div>
+				
+								{#if job.summary}
+									<div class="summary">
+										<TextBlock text={job.summary} />
+									</div>
+								{/if}
+		
+								<div class="techs">
+									{#each job.tech as tech}
+										<a
+											href="{tech.url}"
+											target="_blank"
+											class="tech"
+										>
+											{tech.name}
+										</a>
+									{/each}
+								</div>
+							</div>
+						</article>
+					{/each}
+				</div>
+			{/if}
+		</div>
+	</Section>
 </div>
 
 <style>
