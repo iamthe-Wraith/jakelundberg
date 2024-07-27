@@ -49,7 +49,7 @@
             </div>
             
             <div>
-                {daysLeft} / {numDaysBetweenAnniversaries}
+                {daysLeft} / {numDaysBetweenAnniversaries} days
             </div>
         </div>
     </div>

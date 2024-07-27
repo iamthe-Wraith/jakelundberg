@@ -104,6 +104,8 @@
 
 <div class="app">
     <header>
+        <CareerExp />
+
         <div class="nav-container">
             <div class="top">
                 <div class="side left"></div>
@@ -138,8 +140,6 @@
                 <div class="bottom-row" bind:this={bottomRowNavRef}></div>
             </nav>
         </div>
-
-        <CareerExp />
     </header>
 
     <main>
@@ -187,6 +187,7 @@
         align-items: center;
         gap: 0.5rem;
         width: 100%;
+        padding-bottom: 1.5rem;
 
         @media(min-width: 590px) {
             gap: 1rem;
@@ -202,7 +203,7 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        padding: 1.5rem 1.5rem 1rem;
+        padding: 1rem 1.5rem;
 
         &:before {
             content: '';
