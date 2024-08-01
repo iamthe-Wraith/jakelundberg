@@ -230,33 +230,9 @@
 </div>
 
 <style>
-	.cemetery-path {
-		width: 100%;
-		max-width: 80rem;
-		margin: 0 auto;
-		overflow: hidden;
-
-		& img {
-			width: 100%;
-			height: auto;
-			object-fit: cover;
-		}
-	}
-
     .container {
 		width: 96%;
 		margin: 0 auto;
-	}
-
-	section {
-		width: 100%;
-		max-width: 60rem;
-		margin: 0 auto 3rem;
-
-		&:not(:last-of-type) {
-			margin-bottom: 2rem;
-			padding-bottom: 1rem;
-		}
 	}
 
 	.row {
@@ -272,20 +248,6 @@
 		@media (min-width: 500px) {
 			flex-direction: row;
 			gap: 0.5rem;
-		}
-	}
-
-	.intro {
-		position: relative;
-		max-width: 60rem;
-		margin: -7vw auto 0;
-		padding: 2rem 1rem;
-		border-top: 5px solid var(--primary-500);
-        background: var(--neutral-200);
-        z-index: 1;
-
-		& .intro-content {
-			flex-direction: column-reverse;
 		}
 	}
 
@@ -466,11 +428,4 @@
 			}
 		}
 	}
-
-	@media (min-width: 500px) {
-        .intro .intro-content {
-            flex-direction: row;
-            gap: 0.5rem;
-        }
-    }
 </style>

@@ -1,4 +1,4 @@
-import type { PageServerLoad } from "./$types";
+import type { PageServerLoad } from "../$types";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { BlogService, type IBlogPost } from "$lib/services/blog";

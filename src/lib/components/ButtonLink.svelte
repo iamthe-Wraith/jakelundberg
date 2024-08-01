@@ -1,5 +1,5 @@
 <script lang="ts">
-    type ButtonKind = 'primary' | 
+    type ButtonLinkKind = 'primary' | 
         'primary-transparent' | 
         'accent1' | 
         'accept1-transparent' | 
@@ -12,34 +12,30 @@
         'danger-transparent' |
         'transparent';
 
-    export let type: 'button' | 'submit' | 'reset' = 'button';
-    export let kind: ButtonKind = 'primary';
-    export let processing: boolean = false;
+    export let href: string;
+    export let target: string = '_self';
+    export let kind: ButtonLinkKind = 'primary';
 </script>
 
-<button
-    {type}
-    class={`primary-font ${kind} ${processing ? 'processing' : ''}`}
-    {...$$restProps}
+<a
+    {href}
+    {target}
+    class={`primary-font ${kind}`}
     on:click
+    {...$$restProps}
 >
-    {#if processing}
-        <div class="spinner-container">
-            <div class="spinner"></div>
-        </div>
-    {:else}
-        <slot />
-    {/if}
-</button>
+    <slot />
+</a>
 
 <style>
-    button {
+    a {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 0.25rem;
         padding: 0.25rem 1rem;
         font-weight: 400;
+        text-decoration: none;
         
         &:not(:disabled):not(.processing):hover {
             cursor: pointer;
@@ -216,35 +212,6 @@
             &:focus:not(:disabled) {
                 color: var(--neutral-550);
             }
-        }
-    }
-
-    .spinner-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 3rem;
-        width: 100%;
-        min-height: 1rem;
-        height: 100%;
-    }
-
-    .spinner {
-        width: 1rem;;
-        height: 1rem;
-        border: 2px solid var(--neutral-900);
-        border-top-color: transparent;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-
-        100% {
-            transform: rotate(360deg);
         }
     }
 </style>

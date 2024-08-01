@@ -2,6 +2,7 @@
 	import { lazyLoad } from "$lib/actions/lazy-load";
 import Bugz from "$lib/components/Bugz.svelte";
 	import Button from "$lib/components/Button.svelte";
+	import ButtonLink from "$lib/components/ButtonLink.svelte";
 	import EnvironmentImg from "$lib/components/EnvironmentImg.svelte";
 	import Intro from "$lib/components/Intro.svelte";
 	import Section from "$lib/components/Section.svelte";
@@ -65,11 +66,12 @@ import Bugz from "$lib/components/Bugz.svelte";
 				</p>
 
 				<div class="flex-center">
-					<Button
-						on:click={() => console.log('using the computer')}
+					<ButtonLink
+						href="/charlie"
+						target="_blank"
 					>
 						Use the Computer
-					</Button>
+					</ButtonLink>
 				</div>
 			</div>
 		</div>

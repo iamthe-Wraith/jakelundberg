@@ -1,4 +1,4 @@
-import type { LayoutServerLoad } from './$types';
+import type { LayoutServerLoad } from '../$types';
 import { getDevice, type IDevice } from '$lib/utils/device';
 
 interface IData {

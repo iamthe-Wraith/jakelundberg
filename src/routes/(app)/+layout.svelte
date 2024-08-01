@@ -1,5 +1,5 @@
 <script lang="ts">
-    import './global.css';
+    import '../global.css';
     import { page } from '$app/stores';  
 	import { onMount } from 'svelte';
 	import CareerExp from '$lib/components/CareerExp.svelte';
