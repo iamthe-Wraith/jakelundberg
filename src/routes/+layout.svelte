@@ -9,44 +9,37 @@
 
     const navItems = [
         {
-            text: 'Cemetery',
-            subText: 'Where projects go to rest',
-            route: '/cemetery',
-            icon: 'fa-regular fa-tombstone-blank',
+            text: 'Experience',
+            subText: 'Work and projects',
+            route: '/experience',
+            icon: 'fa-regular fa-code', 
             iconStyles: 'transform: rotate(2deg);'
         },
         {
-            text: 'Study',
+            text: 'About',
             subText: 'Beyond the code',
-            route: '/study',
-            icon: 'fa-regular fa-lamp-desk',
+            route: '/about',
+            icon: 'fa-regular fa-circle-info',
             iconStyles: 'transform: rotate(0deg);'
-        },
-        {
-            text: 'Library',
-            subText: 'Learn stuff and share it',
-            route: '/library',
-            icon: 'fa-regular fa-books',
-            iconStyles: 'transform: rotate(-6deg);'
         },
         {
             text: 'Laboratory',
             subText: 'A place to experiment',
-            route: '/laboratory',
+            route: 'https://wraithcode.io/experiments',
             icon: 'fa-regular fa-flask-round-poison',
             iconStyles: 'transform: rotate(8deg);'
         },
         {
-            text: 'Tool Chest',
-            subText: 'Tools and gear',
-            route: '/tool-chest',
+            text: 'Uses',
+            subText: 'Tools and gear I use',
+            route: '/uses',
             icon: 'fa-regular fa-gear-complex-code',
             iconStyles: 'transform: rotate(-4deg);'
         },
         {
-            text: 'Mailbox',
+            text: 'Contact',
             subText: 'Get in touch',
-            route: '/mailbox',
+            route: '/contact',
             icon: 'fa-regular fa-mailbox-flag-up',
             iconStyles: 'transform: rotate(5deg);'
         }
