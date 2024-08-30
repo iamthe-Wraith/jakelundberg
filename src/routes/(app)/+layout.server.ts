@@ -1,11 +1,11 @@
-import type { LayoutServerLoad } from '../$types';
+import type { LayoutServerLoad } from './$types';
 import { getDevice, type IDevice } from '$lib/utils/device';
 
 interface IData {
 	device?: IDevice;
 }
 
-export const load = (async ({ request }) => {
+export const load: LayoutServerLoad = (async ({ request }) => {
 	const data: IData = {};
 
 	try {
@@ -19,4 +19,4 @@ export const load = (async ({ request }) => {
 	}
 
 	return data;
-}) satisfies LayoutServerLoad;
+});

@@ -1,3 +1,19 @@
+<script lang="ts">
+	import Auth from "$lib/components/charlie/Auth.svelte";
+import { onMount } from "svelte";
+
+    let mounted = false;
+    let isSignedIn = false;
+
+    onMount(() => {
+        mounted = true;
+    });
+
+    const onSignIn = () => {
+        console.log('welcome back sir!');
+    }
+</script>
+
 <div class="container">
     <div class="bg"></div>
 
@@ -5,7 +21,13 @@
         <div class="monitor-case center">
             <div class="webcam"></div>
 
-            <div class="monitor"></div>
+            <div class="monitor">
+                {#if isSignedIn}
+                    <div>you are signed in...</div>
+                {:else}
+                    <Auth {onSignIn} />
+                {/if}
+            </div>
 
             <i class="fa-regular fa-ghost logo"></i>
         </div>
@@ -96,13 +118,14 @@
     .monitor {
         position: absolute;
         top: 1rem;
-        right: 1rem;
-        bottom: 2.5rem;
         left: 1rem;
+        width: calc(100% - 2rem);
+        height: calc(100% - 3.5rem);
         border: 2px solid var(--neutral-100);
         border-radius: 1rem;
         background: var(--neutral-150);
         box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.3);
+        overflow: auto;
     }
 
     .logo {
