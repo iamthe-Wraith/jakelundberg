@@ -25,13 +25,13 @@
         {
             text: 'Laboratory',
             subText: 'A place to experiment',
-            route: 'https://wraithcode.io/experiments',
+            route: 'https://wraithcode.io/the-lab',
             icon: 'fa-regular fa-flask-round-poison',
             iconStyles: 'transform: rotate(8deg);'
         },
         {
             text: 'Uses',
-            subText: 'Tools and gear I use',
+            subText: 'Tools and gear',
             route: '/uses',
             icon: 'fa-regular fa-gear-complex-code',
             iconStyles: 'transform: rotate(-4deg);'

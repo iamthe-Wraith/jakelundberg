@@ -17,15 +17,15 @@
     $: blogPosts = data?.blog?.posts ?? [];
 </script>
 
-<EnvironmentImg
+<!-- <EnvironmentImg
     src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721872334/manor-gate_vfs5th.png"
     alt="An iron gate standing slightly ajar between 2 large stone pillars. A stone path leads up to the gate
     and beyond into a dark forest. Vines and most climb up the stone pollers and gate, giving the impression
     that the gate has been abandoned for some time."
-/>
+/> -->
 
 <div class="container">
-    <Intro header="Welcome to Wraith Manor">
+    <Intro header="Welcome!">
         <div class="intro-content">
             <div class="img-container">
                 <Bugz />
@@ -33,21 +33,18 @@
     
             <div>
                 <p>
-                    I'm Dee Bugz, but everyone just calls me Bugz for short. 
+                    Hi, I'm Dee Bugz, but everyone just calls me Bugz for short. 
                 </p>
         
                 <p>
-                    I'll be your guide as you explore the grounds of Wraith Manor, the home of a mad software
-                    engineer named <span>Jake Lundberg</span>, whose passion for building software has led him
-                    to create many strange and wonderful things for the web.
+                    I'll be your guide as you browse and learn about <span>Jake Lundberg</span>, a mad
+                    engineer whose passion for building software has led him to create many strange and wonderful
+                    things for the web.
                 </p>
 
                 <p>
-                    But be careful...
-                </p>
-        
-                <p>
-                    Ever since he went missing, strange things have been happening around here.
+                    To start, I recommend scrolling down a little bit and checking out what he's been working on
+                    lately!
                 </p>
             </div>
         </div>
