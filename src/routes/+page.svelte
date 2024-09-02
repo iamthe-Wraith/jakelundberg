@@ -4,7 +4,6 @@
 	import Bugz from "$lib/components/Bugz.svelte";
 	import type { IBook } from "$lib/services/library";
 	import BlogPost from "$lib/components/BlogPost.svelte";
-	import EnvironmentImg from "$lib/components/EnvironmentImg.svelte";
 	import Intro from "$lib/components/Intro.svelte";
 	import Section from "$lib/components/Section.svelte";
 

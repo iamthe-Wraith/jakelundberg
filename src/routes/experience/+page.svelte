@@ -7,9 +7,7 @@
 	import { assets } from '$lib/stores/assets';
 	import { assets as assetsPath } from '$app/paths';
 	import Bugz from "$lib/components/Bugz.svelte";
-	import Tombstone from "$lib/components/Tombstone.svelte";
 	import TextBlock from "$lib/components/TextBlock.svelte";
-	import EnvironmentImg from "$lib/components/EnvironmentImg.svelte";
 	import Intro from "$lib/components/Intro.svelte";
 	import Section from "$lib/components/Section.svelte";
 

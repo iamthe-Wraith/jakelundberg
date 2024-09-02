@@ -1,16 +1,15 @@
 <script lang="ts">
 	import Bugz from "$lib/components/Bugz.svelte";
-	import EnvironmentImg from "$lib/components/EnvironmentImg.svelte";
 	import Intro from "$lib/components/Intro.svelte";
 	import Item from "$lib/components/Item.svelte";
 	import MyFavorites from "$lib/components/MyFavorites.svelte";
 	import Section from "$lib/components/Section.svelte";
 </script>
 
-<EnvironmentImg
+<!-- <EnvironmentImg
 	src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721129624/study-cropped_w65fnn.png"
 	alt="An old, dusty, cobweb filled study. A large desk sits in the center with a large, leather chair behind it. The walls are lined with bookshelves filled with books and various trinkets. A large window, covered in cobwebs, lets in the moonlight from outside."
-/>
+/> -->
 
 <div class="container">
 	<Intro header="The Study">
@@ -33,10 +32,7 @@
 		<div class="intro-content row">
 			<div>
 				<p>
-					If you want to learn more about Jake, this is probably the best place to do it. If he wasn't in the Lab
-					or the Library, he was usually here, playing a game, watching a movie, or brainstorming his next project. 
-					You'll probably find a lot of his old stuff here, too. He liked to collect different things, so you never
-					know what you'll find.
+					If you want to learn more about Jake, this is probably the best place to do it.
 				</p>
 			</div>
 
@@ -69,33 +65,35 @@
 	
 				<div>
 					<p>
-						Other than his family, I probably knew Jake the best, so let me share a little about him while you look around.
+						Unlike many people who work in software development, Jake didn't start out with a computer in his hands. In fact,
+						he didn't even have internet in his house growing up. No, Jake didn't get a taste for technology until he was well
+						into his twenties and had already served in the U.S. Army. But once he did, he knew he had found his passion.
+					</p>
+
+					<p>
+						He grew up in a really small farming town in Washington State where he started working at just 11 years old,
+						stacking 50 lbs. bags of onions on pallets in a local packing plant during the summers between school years. When
+						he was old enough he got a job at a fast food restaurant where he worked as much as he could until he graduated
+						highschool.
 					</p>
 	
 					<p>
-						Jake grew up in a really small farming town in Washington State. To give you an idea of how small, his graduating
-						class only had 26 people in it! Here he started working when he was 11 years old, stacking 50 lbs. bags of onions on
-						pallets in a local packing plant. 
-					</p>
-	
-					<p>
-						After highschool he joined the U.S. Army and served for 4 years stationed in Fort Bragg, North Carolina. It was
-						during this time he first discovered his love for software development. After the Army he went to work for a big
-						bank doing collections for their automobile finance department. While working there, he went to school and got his
-						Bachelor's degree in Software Engineering. When he graduated, he dove into the software development world and has
-						been working in it ever since.
+						After highschool he joined the U.S. Army and served for 4 years. It was during this time he first discovered his
+						love for software development. After the Army he went to work for a big bank doing collections for their automobile
+						finance department. While working there, he went to school full time and got his Bachelor's degree in Software
+						Engineering. When he graduated, he dove into the software development world and has been working in it ever since.
 					</p>
 	
 					<p>
 						He once told me that he hoped everyone could find the same love and passion in their lives that he found in software
-						development. He said that it was the one thing that he could do for hours on end and never get bored. You could always
-						find him working on some project or another, and he was always excited to share what he was working on with anyone who
-						would listen...usually me!
+						development. He said that it was the one thing that he could do every single day for hours on end and never get bored
+						or tired of it. You could always find him working on some project or another, and he was always excited to shar
+						 what he was working on with anyone who would listen...usually me!
 					</p>
 	
 					<p>
-						Before he went missing he lived in Raleigh, NC with his wife, son, and their 3 dogs. He was a big fan of grilling and smoking meats,
-						playing games with his son, and watching bad horror movies with his wife.
+						Today he lives in Raleigh, North Carolina with his wife, son and their 3 dogs. He's a big fan of grilling and smoking
+						meats, playing games with his son, and watching bad horror movies.
 					</p>
 				</div>
 			</div>
@@ -119,86 +117,6 @@
 			<MyFavorites includeItems />
 		</div>
 	</Section>
-
-	<!-- <section class="shelf shelf-2">
-		<button>
-			<img
-				class="artwork"
-				src="https://res.cloudinary.com/dxpwpno1e/image/upload/c_scale,h_500/v1721223756/ironman-wood-poster_oaaqes.webp"
-				alt="Wooden Iron Man movie poster"
-			/>
-		</button>
-
-		<div>
-			<button>
-				<img
-					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/poo-emoji-stuffed-toy-200x200_hmjrcd.png"
-					alt="Poo emoji stuffed toy"
-				/>
-			</button>
-
-			<button>
-				<img
-					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223722/thing-200x200_ydecso.png"
-					alt="A mold figure of Thing from The Adams Family"
-				/>
-			</button>
-
-			<button>
-				<img
-					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/hulk-buster-lego-200x200_owuqmq.png"
-					alt="Lego Hulkbuster armor"
-				/>
-			</button>
-
-			<button>
-				<img
-					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/dundie-award-200x200_uil2kf.png"
-					alt="Dundie Award from The Office"
-				/>
-			</button>
-		</div>
-	</section>
-
-	<section class="shelf shelf-3">
-		<div>
-			<button>
-				<img
-					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223721/zero-200x200_wtplie.png"
-					alt="Light up figure of Zero from The Nightmare Before Christmas"
-				/>
-			</button>
-
-			<button>
-				<img
-					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223721/pumpkin-king-funko-200x200_tik8yw.png"
-					alt="Jack Skellington from The Nightmare Before Christmas dressed as The Pumpkin King Funko Pop"
-				/>
-			</button>
-
-			<button>
-				<img
-					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/back-to-the-future-doc-funko-200x200_bcym9p.png"
-					alt="Doc Brown from Back to the Future Funko Pop"
-				/>
-			</button>
-
-			<button>
-				<img
-					src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/kevin-funko-200x200_srfttr.png"
-					alt="Kevin from The Office dressed up as Captain Dunder Mifflin Funko Pop"
-				/>
-			</button>
-		</div>
-
-		<button>
-			<img
-				class="artwork"
-				src="https://res.cloudinary.com/dxpwpno1e/image/upload/c_scale,h_500/v1721230788/ironman-metal-poster_ns19uy.jpg"
-				alt="Metal poster of Iron Man The Birth of the Power comic book cover"
-			/>
-		</button>
-	</section> -->
 </div>
 
 <style>
