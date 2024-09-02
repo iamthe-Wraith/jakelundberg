@@ -81,16 +81,18 @@
 						{data.jobs.error}
 					</p>
 				{:else}
-					<p>
-						Jake has had the opportunity to work at some really cool places over the years. From client management
-						tools, to environmental initiatives, to financial services, he's had the chance to work on a wide variety
-						of projects and with some amazing people. And everywhere he goes he brings his passion for building
-						software and making things better.
-					</p>
-
-					<p>
-						Here are a few of the places he's worked and some of the things he's done. 
-					</p>
+					<div>
+						<p>
+							Jake has had the opportunity to work at some really cool places over the years. From client management
+							tools, to environmental initiatives, to financial services, he's had the chance to work on a wide variety
+							of projects and with some amazing people. And everywhere he goes he brings his passion for building
+							software and making things better.
+						</p>
+	
+						<p>
+							Here are a few of the places he's worked and some of the things he's done. 
+						</p>
+					</div>
 				{/if}
 			</div>
 	
