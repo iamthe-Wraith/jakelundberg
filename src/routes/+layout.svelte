@@ -30,6 +30,13 @@
             iconStyles: 'transform: rotate(8deg);'
         },
         {
+            text: 'Blog',
+            subText: 'Learn then share',
+            route: 'https://dev.to/wraith',
+            icon: 'fa-regular fa-blog',
+            iconStyles: 'transform: rotate(2deg);'
+        },
+        {
             text: 'Uses',
             subText: 'Tools and gear',
             route: '/uses',

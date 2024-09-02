@@ -12,7 +12,7 @@
 /> -->
 
 <div class="container">
-	<Intro header="The Study">
+	<Intro header="About">
 		<div class="item venomized-iron-man">
 			<Item
 				id="venomized-iron-man"
