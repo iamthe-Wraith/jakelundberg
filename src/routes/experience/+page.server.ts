@@ -21,14 +21,14 @@ export const load: PageServerLoad = async ({ locals }) => {
         projects = await projectsService.getProjects();
     } catch (err: unknown) {
         Logger.error("Failed to get projects", (err as Error).message);
-        projectError = "Uh oh, Jake's projects aren't here. I hope they didn't come back to life and wander off! Let me see what's going on. Come back in a bit!";
+        projectError = "Uh oh, Jake's projects aren't here! Let me go figure out what happened. Come back in a little bit.";
     }
     
     try {
         jobs = await workService.getJobs();
     } catch (err: unknown) {
         Logger.error("Failed to get jobs", (err as Error).message);
-        jobsError = "Uh oh, Jake's work history isn't here. I hope they didn't come back to life and wander off! Let me see what's going on. Come back in a bit!";
+        jobsError = "Uh oh, Jake's work stuff isn't here! Let me go figure out what happened. Come back in a little bit.";
     }
 
     return {

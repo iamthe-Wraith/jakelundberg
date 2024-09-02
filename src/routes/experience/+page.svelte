@@ -40,23 +40,26 @@
 	}
 </script>
 
-<EnvironmentImg
+<!-- <EnvironmentImg
 	src="https://res.cloudinary.com/dxpwpno1e/image/upload/c_scale,w_1024/v1720401233/cemetery_sgsaei.png"
 	alt="A spooky cemetery in the mountains at night with crooked tombstones and creepy trees."
-/>
+/> -->
 
 <div class="container">
-	<Intro header="Cemetery">
+	<Intro header="Experience">
 		<div class="intro-content row">
 			<div>
 				<p>
-					Ah, I see you found the cemetery. Kinda spooky isn't it?
+					Jake has been building stuff for the web for a long time. But even after more than a decade of experience, he
+					still gets excited about learning new things and building new stuff. I've never seen anyone so passionate about
+					what they do!
 				</p>
-	
+
 				<p>
-					This is where Jake used to bury his projects and work stuff. Feel free to take a look around,
-					but don't wander too far...I've heard strange sounds coming from here at night. And after I heard
-					the rumors of this place, I had to sleep with my nightlight for a month!
+					Not only does he like learning new things, but he also loves using what he knows to help solve problems. He's
+					always looking for ways to make things better. Wether it's optimizing an application's performance, automating
+					some tedious task, or just making something easier to use, he's constantly working to make the web, and the world
+					around him a better, more enjoyable place.
 				</p>
 			</div>
 	
@@ -67,6 +70,81 @@
 	</Intro>
 
 	<Section>
+		<div class="work">
+			<h2>Work Stuff</h2>
+	
+			<div class="row">
+				<div class="img-container">
+					<Bugz is="waving" />
+				</div>
+	
+				{#if data.jobs.error}
+					<p class="section-intro error">
+						{data.jobs.error}
+					</p>
+				{:else}
+					<p>
+						Jake has had the opportunity to work at some really cool places over the years. From client management
+						tools, to environmental initiatives, to financial services, he's had the chance to work on a wide variety
+						of projects and with some amazing people. And everywhere he goes he brings his passion for building
+						software and making things better.
+					</p>
+
+					<p>
+						Here are a few of the places he's worked and some of the things he's done. 
+					</p>
+				{/if}
+			</div>
+	
+			{#if data.jobs.data.length && !data.jobs.error}
+				<div class="list-container">
+					{#each data.jobs.data as job, i (job.id)}
+						<article class="{(i % 2) ? 'reverse' : ''}">
+							<div class="company-logo-container">
+								<img
+									class="company-logo"
+									src="#"
+									alt="#"		
+								/>
+							</div>
+	
+							<div class="content">
+								<div class="header">
+									<a href="{job.url}" target="_blank" class="h5 title">
+										{job.position}&#12539;{job.companyName}
+									</a>
+								</div>
+		
+								<div class="metadata">
+									<p>{job.location}</p>
+								</div>
+				
+								{#if job.summary}
+									<div class="summary">
+										<TextBlock text={job.summary} />
+									</div>
+								{/if}
+		
+								<div class="techs">
+									{#each job.tech as tech}
+										<a
+											href="{tech.url}"
+											target="_blank"
+											class="tech"
+										>
+											{tech.name}
+										</a>
+									{/each}
+								</div>
+							</div>
+						</article>
+					{/each}
+				</div>
+			{/if}
+		</div>
+	</Section>
+
+	<Section>
 		<div class="projects">
 			<h2>Projects</h2>
 	
@@ -75,31 +153,34 @@
 					<Bugz is="waving" />
 				</div>
 	
-				<p class="section-intro {data.projects.error ? 'error' : ''}">
-					{#if data.projects.error}
+				{#if data.projects.error}
+					<p class="section-intro error">
 						{data.projects.error}
-					{:else}
-						Jake was always working on something in his lab. Whether it was to learn something new, or solving some
-						problem he'd encountered, he always had something in the works. And when he was done with them, he buried them
-						here in the cemetery. I've heard that some of them are still alive and kicking though!
-					{/if}
-				</p>
+					</p>
+				{:else}
+					<div>
+						<p class="section-intro">
+							Jake is also one of those developers that just loves to build things. So he's always got some project or another
+							that he's working on. He tells me about them when it's my bedtime, and they always sound so exciting!
+						</p>
+	
+						<p>
+							Here are a few of the projects he's built over the years. I hope you find them as interesting as I do!
+						</p>
+					</div>
+				{/if}
+				
 			</div>
 	
 			{#if data.projects.data.length && !data.projects.error}
 				<div class="list-container">
 					{#each data.projects.data as project, i (project.id)}
 						<article class="{(i % 2) ? 'reverse' : ''}">
-							<div class="dates">
-								<div class="tombstone job-tombstone">
-									<!--
-										there are 4 variants of the tombstone, so will use the remainder
-										of the index divided by 4 (+1 since the variants are identified
-										with starting index of 1) to determine which variant to use
-									-->
-									<Tombstone variant={i % 4 + 1} />
-								</div>
-							</div>
+							<img
+								class="project-img"
+								src="#"
+								alt="#"
+							/>
 	
 							<div class="content">
 								<div class="header">
@@ -146,117 +227,12 @@
 			{/if}
 		</div>
 	</Section>
-
-	<Section>
-		<div class="work">
-			<h2>Work Stuff</h2>
-	
-			<div class="row">
-				<div class="img-container">
-					<Bugz is="waving" />
-				</div>
-	
-				<p class="section-intro {data.jobs.error ? 'error' : ''}">
-					{#if data.jobs.error}
-						{data.jobs.error}
-					{:else}
-						Jake had lots of experience building stuff for the web! He told me lot's of stories about the different projects he worked on
-						and the people he got to work with. My favorite was the one about the time he built an automation tool named Igor. Isn't
-						that a silly name for a developer tool?!
-					{/if}
-				</p>
-			</div>
-	
-			{#if data.jobs.data.length && !data.jobs.error}
-				<div class="list-container">
-					{#each data.jobs.data as job, i (job.id)}
-						<article class="{(i % 2) ? 'reverse' : ''}">
-							<div class="dates">
-								{#if job.endDate}
-									<!-- TODO: add label for accessibility -->
-	
-									<div class="tombstone job-tombstone">
-										<!--
-											there are 4 variants of the tombstone, so will use the remainder
-											of the index divided by 4 (+1 since the variants are identified
-											with starting index of 1) to determine which variant to use
-										-->
-										<Tombstone variant={i % 4 + 1}>
-											{dayjs(job.startDate).local().format('MMM YYYY')}
-											- 
-											{dayjs(job.endDate).local().format('MMM YYYY')}
-										</Tombstone>
-									</div>
-								{:else}
-									<div>present...</div>
-								{/if}
-							</div>
-	
-							<div class="content">
-								<div class="header">
-									<a href="{job.url}" target="_blank" class="h5 title">
-										{job.position}&#12539;{job.companyName}
-									</a>
-								</div>
-		
-								<div class="metadata">
-									<p>{job.location}</p>
-								</div>
-				
-								{#if job.summary}
-									<div class="summary">
-										<TextBlock text={job.summary} />
-									</div>
-								{/if}
-		
-								<div class="techs">
-									{#each job.tech as tech}
-										<a
-											href="{tech.url}"
-											target="_blank"
-											class="tech"
-										>
-											{tech.name}
-										</a>
-									{/each}
-								</div>
-							</div>
-						</article>
-					{/each}
-				</div>
-			{/if}
-		</div>
-	</Section>
 </div>
 
 <style>
-	.cemetery-path {
-		width: 100%;
-		max-width: 80rem;
-		margin: 0 auto;
-		overflow: hidden;
-
-		& img {
-			width: 100%;
-			height: auto;
-			object-fit: cover;
-		}
-	}
-
     .container {
 		width: 96%;
 		margin: 0 auto;
-	}
-
-	section {
-		width: 100%;
-		max-width: 60rem;
-		margin: 0 auto 3rem;
-
-		&:not(:last-of-type) {
-			margin-bottom: 2rem;
-			padding-bottom: 1rem;
-		}
 	}
 
 	.row {
@@ -272,20 +248,6 @@
 		@media (min-width: 500px) {
 			flex-direction: row;
 			gap: 0.5rem;
-		}
-	}
-
-	.intro {
-		position: relative;
-		max-width: 60rem;
-		margin: -7vw auto 0;
-		padding: 2rem 1rem;
-		border-top: 5px solid var(--primary-500);
-        background: var(--neutral-200);
-        z-index: 1;
-
-		& .intro-content {
-			flex-direction: column-reverse;
 		}
 	}
 
@@ -306,7 +268,8 @@
 	article {
 		display: flex;
 		flex-direction: column;
-		padding: 7rem 1rem 0.5rem;
+		align-items: stretch;
+		padding: 1rem 1rem 0.5rem;
 		border: 5px solid var(--neutral-300);
 		transition: 0.2s ease-in-out;
 
@@ -318,7 +281,23 @@
 		}
 
 		&:not(:last-of-type) {
-			margin-bottom: 15rem;
+			margin-bottom: 3rem;
+		}
+
+		& .company-logo-container {
+			display: flex;
+			justify-content: center;
+			margin: 0 auto 1rem;
+		}
+
+		& .project-img,
+		& .company-logo {
+			display: block;
+			width: 100%;
+			max-width: 20rem;
+			height: auto;
+			object-fit: cover;
+			object-position: center;
 		}
 
 		& .dates,
@@ -422,11 +401,6 @@
 			&.reverse {
 				flex-direction: row-reverse;
 
-				& .tombstone {
-					right: unset;
-					left: 0;
-				}
-
 				& .content .tags {
 					justify-content: flex-start;
 				}
@@ -434,6 +408,16 @@
 
 			&:not(:last-of-type) {
 				margin-bottom: 2rem;
+			}
+
+			& .company-logo-container {
+				margin: 0;
+			}
+
+			& .project-img,
+			& .company-logo {
+				min-width: 15rem;
+				max-width: 15rem;
 			}
 
 			& .dates {
@@ -466,11 +450,4 @@
 			}
 		}
 	}
-
-	@media (min-width: 500px) {
-        .intro .intro-content {
-            flex-direction: row;
-            gap: 0.5rem;
-        }
-    }
 </style>
