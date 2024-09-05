@@ -12,7 +12,7 @@
         width: 100%;
         max-width: var(--section-max-width, 60rem);
         margin: 0 auto 3rem;
-        padding-top: 5rem;
+        padding-top: 3rem;
 
         &:not(:last-of-type) {
             margin-bottom: 5rem;

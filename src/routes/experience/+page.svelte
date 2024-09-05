@@ -76,37 +76,41 @@
 					<Bugz is="waving" />
 				</div>
 	
-				{#if data.jobs.error}
-					<p class="section-intro error">
-						{data.jobs.error}
-					</p>
-				{:else}
-					<div>
+				<div class="section-intro">
+					{#if data.jobs.error}
+						<p class="error">
+							{data.jobs.error}
+						</p>
+					{:else}
 						<p>
 							Jake has had the opportunity to work at some really cool places over the years. From client management
 							tools, to environmental initiatives, to financial services, he's had the chance to work on a wide variety
 							of projects and with some amazing people. And everywhere he goes he brings his passion for building
 							software and making things better.
 						</p>
-	
+
 						<p>
 							Here are a few of the places he's worked and some of the things he's done. 
 						</p>
-					</div>
-				{/if}
+					{/if}
+				</div>
 			</div>
 	
 			{#if data.jobs.data.length && !data.jobs.error}
 				<div class="list-container">
 					{#each data.jobs.data as job, i (job.id)}
 						<article class="{(i % 2) ? 'reverse' : ''}">
-							<div class="company-logo-container">
+							<a
+								href="{job.url}" 
+								target="_blank" 
+								class="company-logo-container"
+							>
 								<img
 									class="company-logo"
-									src="#"
-									alt="#"		
+									src="{job.logo}"
+									alt="{job.companyName} logo"		
 								/>
-							</div>
+							</a>
 	
 							<div class="content">
 								<div class="header">
@@ -153,34 +157,35 @@
 					<Bugz is="waving" />
 				</div>
 	
-				{#if data.projects.error}
-					<p class="section-intro error">
-						{data.projects.error}
-					</p>
-				{:else}
-					<div>
-						<p class="section-intro">
+				<div class="section-intro">
+					{#if data.projects.error}
+						<p class="error">
+							{data.projects.error}
+						</p>
+					{:else}
+						<p>
 							Jake is also one of those developers that just loves to build things. So he's always got some project or another
 							that he's working on. He tells me about them when it's my bedtime, and they always sound so exciting!
 						</p>
-	
+
 						<p>
 							Here are a few of the projects he's built over the years. I hope you find them as interesting as I do!
 						</p>
-					</div>
-				{/if}
-				
+					{/if}
+				</div>
 			</div>
 	
 			{#if data.projects.data.length && !data.projects.error}
 				<div class="list-container">
 					{#each data.projects.data as project, i (project.id)}
 						<article class="{(i % 2) ? 'reverse' : ''}">
-							<img
-								class="project-img"
-								src="#"
-								alt="#"
-							/>
+							<a href="{project.url}" target="_blank" class="project-img-container">
+								<img
+									class="project-img"
+									src="{project.image}"
+									alt="project preview"
+								/>
+							</a>
 	
 							<div class="content">
 								<div class="header">
@@ -252,13 +257,15 @@
 	}
 
 	.section-intro {
+		padding: 0 0.5rem;
+
 		&.error {
 			font-size: unset;
 		}
 	}
 
 	.list-container {
-		padding-top: 14rem;
+		padding-top: 3rem;
 
 		@media (min-width: 768px) {
 			padding-top: 0;
@@ -284,19 +291,21 @@
 			margin-bottom: 3rem;
 		}
 
-		& .company-logo-container {
+		& .company-logo-container,
+		& .project-img-container {
 			display: flex;
 			justify-content: center;
 			margin: 0 auto 1rem;
+			padding: 1rem;
 		}
 
-		& .project-img,
-		& .company-logo {
+		& .company-logo,
+		& .project-img {
 			display: block;
 			width: 100%;
 			max-width: 20rem;
 			height: auto;
-			object-fit: cover;
+			object-fit: contain;
 			object-position: center;
 		}
 
@@ -407,7 +416,7 @@
 			}
 
 			&:not(:last-of-type) {
-				margin-bottom: 2rem;
+				margin-bottom: 4rem;
 			}
 
 			& .company-logo-container {

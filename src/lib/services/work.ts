@@ -11,6 +11,7 @@ export interface IJob {
     position: string;
     companyName: string;
     url: string;
+    logo: string;
     location: string;
     startDate: Date;
     endDate: Date | null;
@@ -37,6 +38,7 @@ export class WorkService extends CMSService {
                 position,
                 location,
                 url,
+                logo,
                 startDate,
                 endDate,
                 summary,
