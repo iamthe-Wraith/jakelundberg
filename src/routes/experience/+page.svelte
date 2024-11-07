@@ -194,6 +194,12 @@
 									</a>
 								</div>
 				
+								{#if project.summary}
+									<div class="summary">
+										<TextBlock text={project.summary} />
+									</div>
+								{/if}
+
 								{#if project.description}
 									<div class="description">
 										<TextBlock text={project.description} />
