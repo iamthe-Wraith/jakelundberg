@@ -12,7 +12,7 @@
     .intro {
         position: relative;
 		max-width: 60rem;
-		margin: -7vw auto 3rem;
+		margin: 2vw auto 3rem;
 		border-top: 5px solid var(--primary-500);
         background: var(--neutral-200);
         z-index: 1;

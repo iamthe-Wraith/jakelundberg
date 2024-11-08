@@ -1,12 +1,11 @@
 <script lang="ts">
 	import type { IBlogPost } from "$lib/services/blog";
 	import type { PageData } from "./$types";
-	import Bugz from "$lib/components/Bugz.svelte";
 	import type { IBook } from "$lib/services/library";
 	import BlogPost from "$lib/components/BlogPost.svelte";
-	import EnvironmentImg from "$lib/components/EnvironmentImg.svelte";
 	import Intro from "$lib/components/Intro.svelte";
 	import Section from "$lib/components/Section.svelte";
+	import IntroContent from "$lib/components/IntroContent.svelte";
 
     export let data: PageData;
 
@@ -17,40 +16,35 @@
     $: blogPosts = data?.blog?.posts ?? [];
 </script>
 
-<EnvironmentImg
-    src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721872334/manor-gate_vfs5th.png"
-    alt="An iron gate standing slightly ajar between 2 large stone pillars. A stone path leads up to the gate
-    and beyond into a dark forest. Vines and most climb up the stone pollers and gate, giving the impression
-    that the gate has been abandoned for some time."
-/>
-
 <div class="container">
-    <Intro header="Welcome to Wraith Manor">
-        <div class="intro-content">
-            <div class="img-container">
-                <Bugz />
-            </div>
-    
-            <div>
-                <p>
-                    I'm Dee Bugz, but everyone just calls me Bugz for short. 
-                </p>
-        
-                <p>
-                    I'll be your guide as you explore the grounds of Wraith Manor, the home of a mad software
-                    engineer named <span>Jake Lundberg</span>, whose passion for building software has led him
-                    to create many strange and wonderful things for the web.
-                </p>
+    <Intro header="Hey, I'm Jake.">
+        <IntroContent>
+            <p>
+                I'm a software engineer with over 10 years of experience in building strange and wonderful
+                things for the web. I'm genuinely passionate about what I do!
+            </p>
 
-                <p>
-                    But be careful...
-                </p>
-        
-                <p>
-                    Ever since he went missing, strange things have been happening around here.
-                </p>
-            </div>
-        </div>
+            <p>
+                When I'm not wrestling with code, you can find me lost in the magical realms of fantasy games
+                and puzzles (both playing in them and creating them myself), or watching delightfully terrible horror
+                movies with my family that make us question our life choices. I also enjoy snuggling with my
+                puppies—because who doesn't love a furry snuggle buddy?! And let's not forget my secret talent:
+                grilling the perfect steak. I'm no wizard in the kitchen, but give me a grill and I'll make you
+                a steak that will make your taste buds do backflips! (<em> no gas allowed! 🔥</em>).
+            </p>
+
+            <p>
+                But it's not all about the code and the grill. I'm also passionate about building people up in their
+                careers and creating teams that actually enjoy working together. And for some odd reason, I also really
+                enjoy finding that perfect balance between process and autonomy that makes teams and companies
+                thrive.
+            </p>
+
+            <p>
+                So, welcome to my little corner of the internet! I'm excited to share my work, my quirks, and maybe even
+                a few dad jokes along the way. Let's connect and see where this adventure takes us!
+            </p>
+        </IntroContent>
     </Intro>
 
     {#if currentlyReading.length > 0}
@@ -82,38 +76,15 @@
             </div>
         </Section>
     {/if}
+
+    <Section style="--section-max-width: 80rem">
+        <div class="flex-center">
+            What people have to say coming soon...
+        </div>
+    </Section>
 </div>
 
 <style>
-    .intro-content {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        max-width: 50rem;
-        margin: 0 auto;
-
-        & p:last-child {
-            margin-bottom: 0;
-        }
-
-        & .img-container {
-            display: flex;
-            justify-content: center;
-        }
-
-        & p {
-            margin-bottom: 1rem;
-
-            & span {
-                color: var(--accent1-500);
-            }
-
-            & a {
-                text-decoration: none;
-            }
-        }
-    }
-
     .currently-reading {
         container-type: inline-size;
         container-name: currently-reading;
@@ -157,13 +128,6 @@
             grid-template-columns: 1fr;
             justify-items: center;
             gap: 1.5rem;
-        }
-    }
-
-    @media (min-width: 500px) {
-        .intro-content {
-            flex-direction: row;
-            gap: 0.5rem;
         }
     }
 

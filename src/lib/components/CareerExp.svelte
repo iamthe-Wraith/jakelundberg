@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { STARTED_WORKING_IN_SOFTWARE } from "$lib/constants/me";
 	import dayjs from "dayjs";
 	import { onMount } from "svelte";
 
@@ -19,10 +20,10 @@
         window.clearTimeout(timer);
 
         const now = dayjs();
-        const startDate = new Date('2013-08-01');
+        const startDate = new Date(STARTED_WORKING_IN_SOFTWARE);
 
-        const nextAnniversary = dayjs(startDate).set('year', now.year());
-        if (nextAnniversary.isBefore(now)) nextAnniversary.add(1, 'year');
+        let nextAnniversary = dayjs(startDate).set('year', now.year());
+        if (nextAnniversary.isBefore(now)) nextAnniversary = nextAnniversary.add(1, 'year');
 
         yearsExp = now.diff(startDate, 'year');
         daysLeft = nextAnniversary.diff(now, 'day');
@@ -38,7 +39,7 @@
 {#if !!yearsExp && !!numDaysBetweenAnniversaries}
     <div class="career-exp-container">
         <div class="progress-bar">
-            <div style="width: {Math.floor(((numDaysBetweenAnniversaries - daysLeft) / numDaysBetweenAnniversaries) * 100)}%">
+            <div style="width: {Math.floor(((numDaysBetweenAnniversaries - daysLeft - 1) / numDaysBetweenAnniversaries) * 100)}%">
                 <div class="shine"></div>
             </div>
         </div>
@@ -49,7 +50,7 @@
             </div>
             
             <div>
-                {daysLeft} / {numDaysBetweenAnniversaries} days
+                {numDaysBetweenAnniversaries - daysLeft - 1} / {numDaysBetweenAnniversaries} days
             </div>
         </div>
     </div>

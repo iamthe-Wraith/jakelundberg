@@ -12,7 +12,9 @@ export interface IProject {
     rank: number;
     name: string;
     url: string;
+    image: string;
     links: IProjectLink[];
+    summary: InputValue;
     description: InputValue;
     tech: ITech[];
 }
@@ -35,10 +37,12 @@ export class ProjectsService extends CMSService {
                 rank,
                 name,
                 url,
+                image,
                 links[] {
                     label,
                     url,
                 },
+                summary,
                 description,
                 tech[]->{
                     "id": _id,

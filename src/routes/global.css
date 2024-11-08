@@ -302,10 +302,6 @@ h6 *,
 	}
 }
 
-p {
-	margin-bottom: 0.5rem;
-}
-
 /* helper classes */
 .flex-center {
 	display: flex;

@@ -4,7 +4,7 @@
     export let alt: string;
 
     const onItemClick = () => {
-        console.log('Item clicked: ', id);
+        // do nothing for now...
     };
 </script>
 
@@ -12,6 +12,7 @@
     {id}
     class="item"
     on:click={onItemClick}
+    disabled
 >
     <img src={src} alt={alt} />
     <slot></slot>
@@ -28,11 +29,11 @@
         height: var(--item-height, auto);
         line-height: 0;
 
-		&:hover img,
+		/* &:hover img,
 		&:focus-within img {
 			filter: drop-shadow(0 0 0.5rem var(--primary-100));
 			transition: 0.35s ease-in-out;
-		}
+		} */
 
 		& img {
 			display: block;
