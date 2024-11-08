@@ -4,9 +4,6 @@
 	import Tabs from "./Tabs.svelte";
 	import type { ITab } from "$lib/types/tabs";
 	import { lazyLoad } from "$lib/actions/lazy-load";
-	import Item from "./Item.svelte";
-
-    export let includeItems = false;
 
     let category = FavoriteType.Movie as typeof FavoriteType[keyof typeof FavoriteType];
     let pluralCategory = '';
@@ -101,16 +98,6 @@
 <div class="favorites-container">
     <div class="tabs-container">
         <Tabs {tabs} on:tab-click={setCategory}/>
-
-        {#if includeItems}
-            <div class="item poo-emoji">
-                <Item
-                    id="poo-emoji-stuffed-toy"
-                    src="https://res.cloudinary.com/dxpwpno1e/image/upload/v1721223718/poo-emoji-stuffed-toy-200x200_hmjrcd.png"
-                    alt="Poo emoji stuffed toy"
-                />
-            </div>
-        {/if}
     </div>
 
     {#if error}
@@ -241,22 +228,6 @@
         & p {
             margin: 0;
             color: var(--neutral-500);
-        }
-    }
-
-    .item {
-		position: absolute;
-		line-height: 0;
-	}
-
-    .poo-emoji {
-        --item-width: 100px;
-        position: absolute;
-        right: 1rem;
-        bottom: -7px;
-
-        @media (max-width: 500px) {
-            display: none;
         }
     }
 </style>

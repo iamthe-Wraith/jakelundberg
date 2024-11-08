@@ -17,6 +17,13 @@ export interface IFavorite {
     favoriteType: typeof FavoriteType[keyof typeof FavoriteType];   
 }
 
+export interface IGoal {
+    id: string;
+    name: string;
+    completed: boolean;
+    description: string;
+}
+
 export interface IHobby {
     id: string;
     name: string;
@@ -65,6 +72,15 @@ export class MeService extends CMSService {
     }
 
     /**
+     * Get an array of my goals.
+     * 
+     * @returns {IGoal[]} An array of goals
+     */
+    public getGoals = async (): Promise<IGoal[]> => {
+        return this.fetch(this.renderGoalQuery());
+    }
+
+    /**
      * Get an array of my hobbies.
      * 
      * @returns {IHobby[]} An array of hobbies
@@ -86,6 +102,10 @@ export class MeService extends CMSService {
                 description, 
                 favoriteType
             }`;
+    }
+
+    private renderGoalQuery = () => {
+        return `*[_type == "goal"] { "id": _id, name, completed, description }`;
     }
 
     private renderHobbyQuery = () => {

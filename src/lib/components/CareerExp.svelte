@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { STARTED_WORKING_IN_SOFTWARE } from "$lib/constants/me";
 	import dayjs from "dayjs";
 	import { onMount } from "svelte";
 
@@ -19,7 +20,7 @@
         window.clearTimeout(timer);
 
         const now = dayjs();
-        const startDate = new Date('2013-08-01');
+        const startDate = new Date(STARTED_WORKING_IN_SOFTWARE);
 
         let nextAnniversary = dayjs(startDate).set('year', now.year());
         if (nextAnniversary.isBefore(now)) nextAnniversary = nextAnniversary.add(1, 'year');
