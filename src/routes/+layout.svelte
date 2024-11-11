@@ -22,13 +22,13 @@
             icon: 'fa-regular fa-circle-info',
             iconStyles: 'transform: rotate(0deg);'
         },
-        {
-            text: 'Laboratory',
-            subText: 'A place to experiment',
-            route: 'https://wraithcode.io/the-lab',
-            icon: 'fa-regular fa-flask-round-poison',
-            iconStyles: 'transform: rotate(8deg);'
-        },
+        // {
+        //     text: 'Laboratory',
+        //     subText: 'A place to experiment',
+        //     route: 'https://wraithcode.io/the-lab',
+        //     icon: 'fa-regular fa-flask-round-poison',
+        //     iconStyles: 'transform: rotate(8deg);'
+        // },
         {
             text: 'Blog',
             subText: 'Learn then share',
