@@ -14,6 +14,11 @@
             text: 'Dev.to',
             route: 'https://dev.to/wraith',
             icon: 'fa-brands fa-dev',
+        },
+        {
+            text: 'Bluesky',
+            route: 'https://bsky.app/profile/wraithcode.io',
+            icon: 'fa-brands fa-square-bluesky',
         }
     ];
 </script>
