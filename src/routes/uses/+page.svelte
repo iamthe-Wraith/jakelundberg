@@ -36,19 +36,19 @@
 				I'm currently using a 2021 16" Macbook Pro M1 Max with 64 GB ram and a 2TB SSH. And of course, it's covered in stickers!
 			</li>
 			<li>
-				My external monitor is a <a href="https://www.sceptre.com/Monitors/2K-4K-Series/C355W-3440UN-35-Curved-Monitor-product1176category12category98.html" target="_blank">Scepter C355W-3440UN 35" Curved Monitor</a>.
+				My external monitors are 2x <a href="https://amzn.to/4hlijed" target="_blank">Phillips 4K UHD Monitors</a>.
 			</li>
 			<li>
 				One of the best investments I ever made was splurging on a <a href="https://www.zsa.io/moonlander" target="_blank">Moonlander Mark I keyboard</a>. It's a bit
 				pricey, but has easily been the most comfortable and customizable keyboard I've ever used.
 			</li>
 			<li>
-				My mouse is a <a href="https://amzn.to/3yYjwrj" target="_blank">ZLOT Vertical Gaming Mouse</a>.
-				It's lasted for years and I really like the ergonomics of it.
+				After a recommendation from one of my fav podcasters, I upgraded my mouse to a <a href="https://amzn.to/3WnXqXL" target="_blank">Logitech MX Master 3S</a> and
+				have been loving it!
 			</li>
 			<li>
-				I've been using the same <a href="https://amzn.to/3Msi3MT" target="_blank">Blue Yeti microphone</a> for probably 10 years now and
-				it's still going strong.
+				I recently upgraded my microphone to a <a href="https://amzn.to/4hlijed" target="_blank">Shure MV6</a> with a
+				<a href="https://amzn.to/4alGiYk" target="_blank">Pneumatic Neewer Low Profile Mic Arm</a> and have been really happy with it.
 			</li>
 			<li>
 				I use a <a href="https://amzn.to/3UFtsgU" target="_blank">Logitech for Creators StreamCam Premium Webcam</a> for video calls and recording videos.
@@ -120,7 +120,8 @@
 				It's a fantastic tool with so many little benefits I could (and do) go on about it for a while...but don't worry, I won't do that to you.
 			</li>
 			<li>
-				<a href="https://arc.net/" target="_blank">Arc</a> is my primary browser of choice, which I use for just about everything.
+				<a href="https://arc.net/" target="_blank">Arc</a> is my primary browser of choice, which I use for just about everything...but the company
+				is no longer actively developing it, so I'm in the market for a new browser.
 			</li>
 			<li>
 				I replaced Mac's built in Spotlight with <a href="https://www.raycast.com/" target="_blank">Raycast</a> (Pro version) for quick and easy access to
