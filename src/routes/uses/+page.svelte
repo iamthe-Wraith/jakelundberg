@@ -51,7 +51,8 @@
 				<a href="https://amzn.to/4alGiYk" target="_blank">Pneumatic Neewer Low Profile Mic Arm</a> and have been really happy with it.
 			</li>
 			<li>
-				I use a <a href="https://amzn.to/3UFtsgU" target="_blank">Logitech for Creators StreamCam Premium Webcam</a> for video calls and recording videos.
+				I use a <a href="https://www.amazon.com/Logitech-Widescreen-Calling-Recording-Desktop/dp/B006JH8T3S?sr=8-1" target="_blank">Logitech HD Pro C920</a> webcam for
+				video calls and recording videos.
 			</li>
 			<li>
 				To light my office, I use 2 <a href="https://amzn.to/3ABCRPL" target="_blank">Neewer LED Panel Lights</a> that I bounce off the walls.
@@ -78,8 +79,7 @@
 				had it for a long time and it's still doing great!
 			</li>
 			<li>
-				I carry everything in a <a href="https://amzn.to/3Xc3JwY" target="_blank">REEBOW GEAR Military Tactical Backpack Large Army 3 Day
-				Assault Pack Molle Bag Backpack</a> The Molle system is fantastic when you have lots of gadgets and things you need to keep organized.
+				I carry everything in a <a href="https://www.amazon.com/Timbuk2-Classic-Messenger-Nautical-Medium/dp/B0CLBVL84L?sr=8-1" target="_blank">Timbuk2 Classic Messenger Bag</a>.
 			</li>
 			<li>
 				I listen to <a href="https://amzn.to/3yYjMXj" target="_blank">Beats Fit Pro</a> earbuds most of the time, whether I'm at my desk or
@@ -143,10 +143,6 @@
 			<li>
 				I built <a href="https://buzybee.buzz" target="_blank">BuzyBee</a> to help myself manage all my tasks and projects using the
 				<a href="https://gettingthingsdone.com/" target="_blank">GTD Methodology</a>, and use it every day.
-			</li>
-			<li>
-				I also recently switched to <a href="https://omnivore.app" target="_blank">Omnivore</a> to manage, organize and track all my reading. I was using
-				<a href="https://readwise.io/" target="_blank">Readwise</a>, but wasn't really happy with it. Omnivore has been a great replacement.
 			</li>
 		</ul>
 	</Section>
